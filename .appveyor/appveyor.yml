@@ -1,0 +1,63 @@
+build: off
+
+image: Ubuntu2004
+
+stack: python 3.8
+
+version: '{build}'
+
+environment:
+    priv_key:
+        secure: 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
+
+init:
+    - sh: |
+        ARTIFACTS_COMMIT=${APPVEYOR_REPO_COMMIT:0:7}
+        export ARTIFACTS_COMMIT
+        export PROJ_NAME=adm-cs-fan1-fm01-r
+
+install:
+    # Copy private SSH key
+    - sh: echo "-----BEGIN OPENSSH PRIVATE KEY-----" > $HOME/.ssh/id_rsa
+    - sh: echo "${priv_key}" | tr " " "\n" >> $HOME/.ssh/id_rsa
+    - sh: echo "-----END OPENSSH PRIVATE KEY-----" >> $HOME/.ssh/id_rsa
+    # Update submodules
+    - sh: git submodule sync
+    - sh: git submodule -q update --init --recursive
+    - sh: git submodule foreach --quiet --recursive 'branch="$(git rev-parse --short HEAD)"; if [ "$branch" = "$(git rev-parse --short master)" ]; then echo "\e[92m[ok] $path align on master\e[0m"; else echo "\e[93m[WARNING] $path not align on master ($branch)\e[0m"; fi'
+    # Install toolchain
+    - sh: sudo mkdir -p /opt/ti
+    - sh: sudo chmod 777 /opt/ti
+    - sh: fw_lib/toolchain/install.sh
+    # Install internal ADVANTICS tools
+    - sh: pip3 install git+ssh://git@github.com/ADVANTICS/acgu-gen.git@2021.11.8#egg=acgu-gen
+
+build_script:
+    - sh: make clean
+    - sh: make all
+    - sh: make artifacts
+
+# Bash script to rename the artifact
+after_build:
+    - sh: |
+        if [ "$APPVEYOR_REPO_TAG" = "true" ]; then
+          mv artifacts/*.zip artifacts/$PROJ_NAME$APPVEYOR_REPO_TAG_NAME.zip
+        else
+          mv artifacts/*.zip artifacts/$PROJ_NAME$ARTIFACTS_COMMIT.zip 
+        fi
+
+artifacts:
+    - path: artifacts/*.zip
+
+deploy:
+    provider: GitHub
+    on:
+        APPVEYOR_REPO_TAG: true
+
+    release: $(APPVEYOR_REPO_TAG_NAME)
+    auth_token:
+        secure: JJ4E1VIwKika10RnVj2ehp2rh+tmyUvM4hUd0VcNcHJQFLois80LeYPUxOz+CKtE
+    artifact: artifacts/$PROJ_NAME$APPVEYOR_REPO_TAG_NAME.zip
+    draft: false
+    prerelease: true
+    force_update: true
