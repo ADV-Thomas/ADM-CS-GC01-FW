@@ -1,0 +1,290 @@
+<?xml version="1.0" ?>
+<NetworkDefinition xmlns="http://kayak.2codeornot2code.org/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="KCD_Definition.xsd">
+    <Document name="ADM_CS_FP" version="1" author="[...]" company="Advantics" date="2024-03-27"/>
+
+    <Node id="0" name="User"/>
+    <Node id="42" name="ADM_CS_FP"/>
+
+
+    <Bus name="ADM_CS_FP" baudrate="500000">
+        <Message id="0xA08000" length="8" name="FP_Identification" interval="500" format="extended">
+            <Notes>Identification of the device</Notes>
+            <Producer>
+                <NodeRef id="42"/>
+            </Producer>
+
+            <Signal name="Device_type" offset="0" length="8">
+                <Notes>The device identification field, uniquely identifies the sender in the network</Notes>
+                <LabelSet>
+                    <Label name="FP" value="16" />
+                </LabelSet>
+            </Signal>
+            <Signal name="HW_revision" offset="8" length="8">
+                <Notes>The hardware revision number</Notes>
+            </Signal>
+            <Signal name="HW_variant" offset="16" length="8">
+                <Notes>The DSP firmware revision number</Notes>
+            </Signal>
+            <Signal name="Stack_position" offset="24" length="8">
+                <Notes>Position of the module within the stack</Notes>
+            </Signal>
+            <Signal name="SN_number" offset="32" length="32">
+                <Notes>Unique module serial number</Notes>
+            </Signal>
+        </Message>
+
+        <Message id="0xA08001" length="8" name="FP_FwInfo" interval="500" format="extended">
+            <Notes>Git revision of the DSP firmware</Notes>
+            <Producer>
+                <NodeRef id="42"/>
+            </Producer>
+
+            <Multiplex name="FW_info_mux" offset="56" length="8">
+                <MuxGroup count="0">
+                    <Signal name="FW_revision_0" offset="0" length="8">
+                        <Notes>Character 0</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_1" offset="8" length="8">
+                        <Notes>Character 1</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_2" offset="16" length="8">
+                        <Notes>Character 2</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_3" offset="24" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_4" offset="32" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_5" offset="40" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_6" offset="48" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="FW_revision_7" offset="0" length="8">
+                        <Notes>Character 7</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_8" offset="8" length="8">
+                        <Notes>Character 8</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_9" offset="16" length="8">
+                        <Notes>Character 9</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_10" offset="24" length="8">
+                        <Notes>Character 10</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_11" offset="32" length="8">
+                        <Notes>Character 11</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_12" offset="40" length="8">
+                        <Notes>Character 12</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_13" offset="48" length="8">
+                        <Notes>Character 13</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="FW_datecode_0" offset="0" length="8">
+                        <Notes>Character 0</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_1" offset="8" length="8">
+                        <Notes>Character 1</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_2" offset="16" length="8">
+                        <Notes>Character 2</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_3" offset="24" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_4" offset="32" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_5" offset="40" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_6" offset="48" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="FW_datecode_7" offset="0" length="8">
+                        <Notes>Character 7</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_8" offset="8" length="8">
+                        <Notes>Character 8</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_9" offset="16" length="8">
+                        <Notes>Character 9</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_10" offset="24" length="8">
+                        <Notes>Character 10</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_11" offset="32" length="8">
+                        <Notes>Character 11</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_12" offset="40" length="8">
+                        <Notes>Character 12</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_13" offset="48" length="8">
+                        <Notes>Character 13</Notes>
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+        </Message>
+
+        <Message id="0xA0800D" length="8" name="_FP_Boot_FwInfo" interval="500" format="extended">
+            <Notes>Git revision of the bootloader firmware.</Notes>
+            <Producer>
+                <NodeRef id="42"/>
+            </Producer>
+
+            <Multiplex name="Boot_FW_info_mux" offset="56" length="8">
+                <MuxGroup count="0">
+                    <Signal name="FW_revision_0" offset="0" length="8">
+                        <Notes>Character 0</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_1" offset="8" length="8">
+                        <Notes>Character 1</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_2" offset="16" length="8">
+                        <Notes>Character 2</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_3" offset="24" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_4" offset="32" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_5" offset="40" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_6" offset="48" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="FW_revision_7" offset="0" length="8">
+                        <Notes>Character 7</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_8" offset="8" length="8">
+                        <Notes>Character 8</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_9" offset="16" length="8">
+                        <Notes>Character 9</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_10" offset="24" length="8">
+                        <Notes>Character 10</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_11" offset="32" length="8">
+                        <Notes>Character 11</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_12" offset="40" length="8">
+                        <Notes>Character 12</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_13" offset="48" length="8">
+                        <Notes>Character 13</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="FW_datecode_0" offset="0" length="8">
+                        <Notes>Character 0</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_1" offset="8" length="8">
+                        <Notes>Character 1</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_2" offset="16" length="8">
+                        <Notes>Character 2</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_3" offset="24" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_4" offset="32" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_5" offset="40" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_6" offset="48" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="FW_datecode_7" offset="0" length="8">
+                        <Notes>Character 7</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_8" offset="8" length="8">
+                        <Notes>Character 8</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_9" offset="16" length="8">
+                        <Notes>Character 9</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_10" offset="24" length="8">
+                        <Notes>Character 10</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_11" offset="32" length="8">
+                        <Notes>Character 11</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_12" offset="40" length="8">
+                        <Notes>Character 12</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_13" offset="48" length="8">
+                        <Notes>Character 13</Notes>
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+        </Message>
+
+        
+        <Message id="0xA0800B" length="2" name="FP_Status" interval="500" format="extended">
+            <Notes>Status and fault bitfield</Notes>
+            <Producer>
+                <NodeRef id="42"/>
+            </Producer>
+
+            <Signal name="Ready" offset="0" length="1" endianess="little">
+                <Notes></Notes>
+            </Signal>
+            <Signal name="Running" offset="1" length="1" endianess="little">
+                <Notes></Notes>
+            </Signal>
+        </Message>
+
+
+
+
+        <Message id="0xA00045" length="6" name="FP_Stack_Control" format="extended">
+            <Notes>Module stack control</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+
+            <Signal name="Stack_position" offset="0" length="8" endianess="little">
+                <Notes>The module position within the stack</Notes>
+                <Consumer>
+                    <NodeRef id="42"/>
+                </Consumer>
+                <Value type="unsigned" slope="1"/>
+            </Signal>
+            <Signal name="Stack_size" offset="8" length="8" endianess="little">
+                <Notes>How many Filter converters are in stack in total</Notes>
+                <Consumer>
+                    <NodeRef id="42"/>
+                </Consumer>
+                <Value type="unsigned" slope="1"/>
+            </Signal>
+            <Signal name="SN_number" offset="16" length="32">
+                <Notes>Unique module serial number</Notes>
+                <Consumer>
+                    <NodeRef id="42"/>
+                </Consumer>
+            </Signal>
+        </Message>
+
+
+     
+
+    </Bus>
+</NetworkDefinition>

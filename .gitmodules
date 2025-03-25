@@ -1,0 +1,6 @@
+[submodule "db"]
+	path = db
+	url = git@github.com:ADVANTICS/CAN_Databases.git
+[submodule "fw_lib"]
+	path = fw_lib
+	url = git@github.com:ADVANTICS/fw_lib.git

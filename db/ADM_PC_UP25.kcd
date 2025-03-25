@@ -1,0 +1,853 @@
+<?xml version="1.0" ?>
+<NetworkDefinition xmlns="http://kayak.2codeornot2code.org/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="KCD_Definition.xsd">
+    <Document name="ADM_PC_UP25" version="1" author="[...]" company="Advantics" date="2019-11-19"/>
+
+    <Node id="0" name="User"/>
+    <Node id="2" name="ADM_PC_UP25"/>
+    <Node id="3" name="ADM_PC_LL25"/>
+    <Node id="4" name="ADM_PC_BC25"/>
+
+    <Bus name="ADM_PC_UP25" baudrate="500000">
+        <Message id="0x28000" length="8" name="PFC_Identification" interval="1000" format="extended">
+            <Notes>Identification of the device</Notes>
+            <Producer>
+                <NodeRef id="2"/>
+            </Producer>
+
+            <Signal name="Device_type" offset="0" length="8">
+                <Notes>The device identification field, uniquely identifies the sender in the network</Notes>
+                <LabelSet>
+                    <Label name="PFC" value="2"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="HW_revision" offset="8" length="8">
+                <Notes>The hardware revision number</Notes>
+            </Signal>
+            <Signal name="HW_variant" offset="16" length="8">
+                <Notes>The DSP firmware revision number</Notes>
+            </Signal>
+            <Signal name="Stack_position" offset="24" length="8">
+                <Notes>Position of the module within the stack</Notes>
+            </Signal>
+            <Signal name="SN_number" offset="32" length="32">
+                <Notes>Unique module serial number</Notes>
+            </Signal>
+        </Message>
+
+        <Message id="0x28001" length="8" name="PFC_FwInfo" interval="1000" format="extended">
+            <Notes>Git revision of the DSP firmware</Notes>
+            <Producer>
+                <NodeRef id="2"/>
+            </Producer>
+
+            <Multiplex name="FW_info_mux" offset="56" length="8">
+                <MuxGroup count="0">
+                    <Signal name="FW_revision_0" offset="0" length="8">
+                        <Notes>Character 0</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_1" offset="8" length="8">
+                        <Notes>Character 1</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_2" offset="16" length="8">
+                        <Notes>Character 2</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_3" offset="24" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_4" offset="32" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_5" offset="40" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_6" offset="48" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="FW_revision_7" offset="0" length="8">
+                        <Notes>Character 7</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_8" offset="8" length="8">
+                        <Notes>Character 8</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_9" offset="16" length="8">
+                        <Notes>Character 9</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_10" offset="24" length="8">
+                        <Notes>Character 10</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_11" offset="32" length="8">
+                        <Notes>Character 11</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_12" offset="40" length="8">
+                        <Notes>Character 12</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_13" offset="48" length="8">
+                        <Notes>Character 13</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="FW_datecode_0" offset="0" length="8">
+                        <Notes>Character 0</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_1" offset="8" length="8">
+                        <Notes>Character 1</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_2" offset="16" length="8">
+                        <Notes>Character 2</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_3" offset="24" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_4" offset="32" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_5" offset="40" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_6" offset="48" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="FW_datecode_7" offset="0" length="8">
+                        <Notes>Character 7</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_8" offset="8" length="8">
+                        <Notes>Character 8</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_9" offset="16" length="8">
+                        <Notes>Character 9</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_10" offset="24" length="8">
+                        <Notes>Character 10</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_11" offset="32" length="8">
+                        <Notes>Character 11</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_12" offset="40" length="8">
+                        <Notes>Character 12</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_13" offset="48" length="8">
+                        <Notes>Character 13</Notes>
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+        </Message>
+
+        <Message id="0x28002" length="8" name="PFC_Debug" interval="1000" format="extended">
+            <Notes>Values for debugging of HW/SW problems</Notes>
+            <Producer>
+                <NodeRef id="2"/>
+            </Producer>
+
+            <Signal name="Status_Error_Code" offset="0" length="16">
+                <Notes>Main status / error code as defined in errno/errno.h</Notes>
+            </Signal>
+            <Signal name="Data_1" offset="16" length="16">
+                <Notes>Additional information for the error/status</Notes>
+            </Signal>
+            <Signal name="Data_2" offset="32" length="16">
+                <Notes>Additional information for the error/status</Notes>
+            </Signal>
+            <Signal name="Data_3" offset="48" length="16">
+                <Notes>Additional information for the error/status</Notes>
+            </Signal>
+        </Message>
+
+        <Message id="0x28007" length="2" name="PFC_Status" interval="100" format="extended">
+            <Notes>Status bitfield</Notes>
+            <Producer>
+                <NodeRef id="2"/>
+            </Producer>
+
+            <Signal name="Converter_running" offset="0" length="1" endianess="little">
+                <Notes>Indicates that the converter is running, and its output is active.</Notes>
+            </Signal>
+            <Signal name="PWM_mode" offset="1" length="1" endianess="little">
+                <Notes>Indicates if the converter is in PWM mode, and therefore working in open loop.</Notes>
+            </Signal>
+            <Signal name="Current_dc_loop_mode" offset="2" length="1" endianess="little">
+                <Notes>Indicates if the current DC loop is enabled.</Notes>
+            </Signal>
+            <Signal name="Current_ac_loop_mode" offset="3" length="1" endianess="little">
+                <Notes>Indicates if the current AC loop is enabled.</Notes>
+            </Signal>
+            <Signal name="Voltage_dc_loop_mode" offset="4" length="1" endianess="little">
+                <Notes>Indicates if the voltage DC loop is enabled.</Notes>
+            </Signal>
+            <Signal name="Voltage_ac_loop_mode" offset="5" length="1" endianess="little">
+                <Notes>Indicates if the voltage AC loop is enabled.</Notes>
+            </Signal>
+            <Signal name="Stack_mode" offset="6" length="1" endianess="little">
+                <Notes>Indicates if running in stack mode.</Notes>
+            </Signal>
+            <Signal name="Master" offset="7" length="1" endianess="little">
+                <Notes>Indicates if the current converter is the Master in the stack.</Notes>
+            </Signal>
+            <Signal name="Slave" offset="8" length="1" endianess="little">
+                <Notes>Indicates if the current converter is a Slave in the stack.</Notes>
+            </Signal>
+        </Message>
+
+        <Message id="0x28006" length="3" name="PFC_Faults" interval="100" format="extended">
+            <Notes>Fault bitfield</Notes>
+            <Producer>
+                <NodeRef id="2"/>
+            </Producer>
+
+            <Signal name="Protection_trip_internal" offset="0" length="1" endianess="little">
+                <Notes>This flagg is asserted if the interlock is open due to an internal fault condition (self-protection)</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Protection_trip_external" offset="1" length="1" endianess="little">
+                <Notes>This flag is asserted if the interlock is open due to an external condition received in the module.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Output_overcurrent" offset="2" length="1" endianess="little">
+                <Notes>Indicates an output overcurrent event. The overcurrent event is triggered when the measured output current is over the programmed current limit.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Output_overvoltage" offset="3" length="1" endianess="little">
+                <Notes>Indicates an output overvoltage event. The overvoltage event is triggered when the measured output voltage is over the programmed voltage limit.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Output_undervoltage" offset="4" length="1" endianess="little">
+                <Notes>Output undervoltage condition. The undervoltage condition is asserted when the measured output voltage is under the programmed voltage limit.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Input_overvoltage" offset="5" length="1" endianess="little">
+                <Notes>Input overvoltage condition. The overvoltage condition is asserted when the measured input voltage is over the programmed voltage limit.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Input_undervoltage" offset="6" length="1" endianess="little">
+                <Notes>Input undervoltage condition. The undervoltage condition is asserted when the measured input voltage is under the programmed voltage limit.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="MOSFET_overtemperature" offset="7" length="1" endianess="little">
+                <Notes>This flag is asserted when the temperature of the MOSFET block is too high.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Inductor_overtemperature" offset="8" length="1" endianess="little">
+                <Notes>This flag is asserted when the temperature of the inductor block is too high.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Rectifier_overtemperature" offset="9" length="1" endianess="little">
+                <Notes>This flag is asserted when the temperature of the rectifier block is too high.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Current_sharing_failure" offset="10" length="1" endianess="little">
+                <Notes>A failure in the internal current sharing. The operation up to the nominal output current cannot be guaranteed.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Switching_failure" offset="11" length="1" endianess="little">
+                <Notes>Failure in the MOSFET block or in their drivers.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Current_loop_failure" offset="12" length="1" endianess="little">
+                <Notes>The current loop is not operational, and therefore current regulation is not guaranteed.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Voltage_loop_failure" offset="13" length="1" endianess="little">
+                <Notes>The voltage loop is not operational, and therefore voltage regulation is not guaranteed.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="CAN_failure" offset="14" length="1" endianess="little">
+                <Notes>CAN bus or transceiver not operating properly.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Control_response_timedout" offset="15" length="1" endianess="little">
+                <Notes>The control system did not answer within the allowed time window, and a time out condition was triggered. The converter is switched off as the control system is not present.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Measurement_system_failure" offset="16" length="1" endianess="little">
+                <Notes>The voltages/currents measurement system is malfunctionning, and readouts are not guaranteed to be accurate.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="EEPROM_failure" offset="17" length="1" endianess="little">
+                <Notes>The configuration EEPROM failed to load or save the module configuration.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+        </Message>
+
+        <Message id="0x28003" length="4" name="PFC_Phase_Current_A_B" interval="100" format="extended">
+            <Notes>Current of phases A and B</Notes>
+            <Producer>
+                <NodeRef id="2"/>
+            </Producer>
+
+            <Signal name="Phase_A" offset="0" length="16" endianess="little">
+                <Notes>Phase current is the MOSFET loop current, in the branch A of the converter. The converter has two branches that contribute in an interleaved mode, providing each half of the total output current.</Notes>
+                <Value slope="0.01" unit="A"/>
+            </Signal>
+            <Signal name="Phase_B" offset="16" length="16" endianess="little">
+                <Notes>Phase current is the MOSFET loop current, in the branch B of the converter. The converter has two branches that contribute in an interleaved mode, providing each half of the total output current.</Notes>
+                <Value slope="0.01" unit="A"/>
+            </Signal>
+        </Message>
+
+        <Message id="0x28004" length="8" name="PFC_Voltages_Currents" interval="100" format="extended">
+            <Notes>Input and output currents and voltages readout. Realtime readouts of the sensed variables. The voltage and current measured at the input and output of the converter.</Notes>
+            <Producer>
+                <NodeRef id="2"/>
+            </Producer>
+
+            <Signal name="Current_In_Rectifier" offset="0" length="16" endianess="little">
+                <Notes>Current measured at the converter input</Notes>
+                <Value slope="0.01" unit="A"/>
+            </Signal>
+            <Signal name="Current_Out" offset="16" length="16" endianess="little">
+                <Notes>Current measured at the converter output</Notes>
+                <Value slope="0.01" unit="A"/>
+            </Signal>
+            <Signal name="Voltage_In" offset="32" length="16" endianess="little">
+                <Notes>Voltage measured at the converter input</Notes>
+                <Value slope="0.1" unit="V"/>
+            </Signal>
+            <Signal name="Voltage_Out" offset="48" length="16" endianess="little">
+                <Notes>Voltage measured at the converter output</Notes>
+                <Value slope="0.1" unit="V"/>
+            </Signal>
+        </Message>
+
+        <Message id="0x28020" length="8" name="_PFC_Voltages_Currents_Raw" interval="100" format="extended">
+            <Notes>Input and output currents and voltages readout. Debug only values, for calibration</Notes>
+            <Producer>
+                <NodeRef id="2"/>
+            </Producer>
+
+            <Signal name="Current_In_Rectifier_Raw" offset="0" length="16" endianess="little">
+                <Notes>Current measured at the converter input</Notes>
+                <Value unit="ADC Counts"/>
+            </Signal>
+            <Signal name="Current_Out_Raw" offset="16" length="16" endianess="little">
+                <Notes>Current measured at the converter output</Notes>
+                <Value unit="ADC Counts"/>
+            </Signal>
+            <Signal name="Voltage_In_Raw" offset="32" length="16" endianess="little">
+                <Notes>Voltage measured at the converter input</Notes>
+                <Value unit="ADC Counts"/>
+            </Signal>
+            <Signal name="Voltage_Out_Raw" offset="48" length="16" endianess="little">
+                <Notes>Voltage measured at the converter output</Notes>
+                <Value unit="ADC Counts"/>
+            </Signal>
+        </Message>
+
+        <Message id="0x28005" length="6" name="PFC_Temperatures" interval="100" format="extended">
+            <Notes>Readouts of the module temperature sensors</Notes>
+            <Producer>
+                <NodeRef id="2"/>
+            </Producer>
+
+            <Signal name="Temp_Boost" offset="0" length="16">
+                <Notes>Temperature of the MOSFET block</Notes>
+                <Value type="signed" slope="0.01" unit="°C"/>
+            </Signal>
+            <Signal name="Temp_Inductor" offset="16" length="16">
+                <Notes>Temperature of the inductors</Notes>
+                <Value type="signed" slope="0.01" unit="°C"/>
+            </Signal>
+            <Signal name="Temp_Rectifier" offset="32" length="16">
+                <Notes>Temperature of the rectifier</Notes>
+                <Value type="signed" slope="0.01" unit="°C"/>
+            </Signal>
+        </Message>
+
+        <Message id="0x28008" length="6" name="PFC_Setpoints" interval="100" format="extended">
+            <Notes>Setpoints</Notes>
+            <Producer>
+                <NodeRef id="2"/>
+            </Producer>
+
+            <Signal name="Duty_cycle" offset="0" length="16">
+                <Notes>The actual PWM duty cycle setpoint</Notes>
+                <Value type="unsigned" slope="0.001525902" unit="%"/>
+            </Signal>
+            <Signal name="Current_setpoint" offset="16" length="16">
+                <Notes>The actual current setpoint</Notes>
+                <Value type="unsigned" slope="0.01" unit="A"/>
+            </Signal>
+            <Signal name="Voltage_setpoint" offset="32" length="16">
+                <Notes>The actual voltage setpoint</Notes>
+                <Value type="unsigned" slope="0.1" unit="V"/>
+            </Signal>
+        </Message>
+
+        <Message id="0x20040" length="1" name="PFC_Mode_Control" interval="1000" format="extended">
+            <Notes>Operation Mode control: sets the converter operation mode</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+                <NodeRef id="3"/>
+                <NodeRef id="4"/>
+            </Producer>
+
+            <Signal name="Converter_ON" offset="0" length="1" endianess="little">
+                <Notes>Enable the converter</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+            </Signal>
+            <Signal name="PWM_mode_ON" offset="1" length="1" endianess="little">
+                <Notes>Enable the PWM mode (this will set the converter in open loop)</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+            </Signal>
+            <Signal name="DC_Current_feedback_ON" offset="2" length="1" endianess="little">
+                <Notes>Enable the DC current loop</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+            </Signal>
+            <Signal name="AC_Current_feedback_ON" offset="3" length="1" endianess="little">
+                <Notes>Enable the AC current loop</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+            </Signal>
+            <Signal name="DC_Voltage_feedback_ON" offset="5" length="1" endianess="little">
+                <Notes>Enable the DC voltage loop</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+            </Signal>
+            <Signal name="AC_Voltage_feedback_ON" offset="4" length="1" endianess="little">
+                <Notes>Enable the AC voltage loop</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+            </Signal>
+        </Message>
+
+        <Message id="0x20050" length="1" name="PFC_Fault_Control" format="extended">
+            <Notes>Fault Control: actions to clear faults and reset the system</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+
+            <Signal name="Clear_Interlock" offset="0" length="1" endianess="little">
+                <Notes>Clears the converter interlock</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+            </Signal>
+            <Signal name="Reset_Processor" offset="1" length="1" endianess="little">
+                <Notes>Reset the converter DSP</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+            </Signal>
+            <Signal name="Clear_Faults" offset="2" length="1" endianess="little">
+                <Notes>Clear software faults</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+            </Signal>
+            <Signal name="Bleeder_Pulse" offset="3" length="1" endianess="little">
+                <Notes>Bleed out output</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+            </Signal>
+            <Signal name="Trip_Interlock" offset="4" length="1" endianess="little">
+                <Notes>Trips the converter interlock</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+            </Signal>
+        </Message>
+
+        <Message id="0x20042" length="2" name="PFC_PWM_Duty_Control" format="extended">
+            <Notes>PWM duty cycle control</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+
+            <Signal name="PWM_Duty" offset="0" length="16" endianess="little">
+                <Notes>Sets the PWM duty cycle. Active only when the converter is in PWM mode</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+                <Value type="unsigned" slope="0.001525902" unit="%" min="0" max="100"/>
+            </Signal>
+        </Message>
+
+        <Message id="0x20043" length="2" name="PFC_Current_Setpoint_Control" interval="1000" format="extended">
+            <Notes>Current setpoint control</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+                <NodeRef id="3"/>
+                <NodeRef id="4"/>
+            </Producer>
+
+            <Signal name="Current_setpoint" offset="0" length="16" endianess="little">
+                <Notes>Sets the output current setpoint. Active only when the current loop is enabled</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+                <Value type="unsigned" slope="0.01" unit="A" min="0" max="60"/>
+            </Signal>
+        </Message>
+
+        <Message id="0x20044" length="2" name="PFC_Voltage_Setpoint_Control" interval="100" format="extended">
+            <Notes>Voltage setpoint control</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+                <NodeRef id="3"/>
+                <NodeRef id="4"/>
+            </Producer>
+
+            <Signal name="Voltage_setpoint" offset="0" length="16" endianess="little">
+                <Notes>Sets the output voltage setpoint. Active only when the voltage loop is enabled</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+                <Value type="unsigned" slope="0.1" unit="V" min="0" max="750"/>
+            </Signal>
+        </Message>
+
+        <Message id="0x20045" length="6" name="PFC_Stack_Control" format="extended">
+            <Notes>PFC stack control</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+
+            <Signal name="Stack_position" offset="0" length="8" endianess="little">
+                <Notes>The converter position within the stack</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+                <Value type="unsigned" slope="1"/>
+            </Signal>
+            <Signal name="Stack_size" offset="8" length="8" endianess="little">
+                <Notes>How many PFC converters are in stack in total</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+                <Value type="unsigned" slope="1"/>
+            </Signal>
+            <Signal name="SN_number" offset="16" length="32">
+                <Notes>Unique module serial number</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+            </Signal>
+        </Message>
+
+        <Message id="0x20048" length="8" name="PFC_Current_Limits" format="extended">
+            <Notes>Set the output current limits (mminimum and maximum)</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+
+            <Signal name="Output_current_min" offset="0" length="16" endianess="little">
+                <Notes>Minimum allowable output current</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+                <Value type="unsigned" slope="0.01" unit="A" min="0"/>
+            </Signal>
+            <Signal name="Output_current_max" offset="16" length="16" endianess="little">
+                <Notes>Maximum allowable output current</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+                <Value type="unsigned" slope="0.01" unit="A" max="60"/>
+            </Signal>
+            <Signal name="Input_current_min" offset="32" length="16" endianess="little">
+                <Notes>Minimum allowable input current</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+                <Value type="unsigned" slope="0.01" unit="A" min="0"/>
+            </Signal>
+            <Signal name="Input_current_max" offset="48" length="16" endianess="little">
+                <Notes>Maximum allowable input current</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+                <Value type="unsigned" slope="0.01" unit="A" max="60"/>
+            </Signal>
+        </Message>
+
+        <Message id="0x20049" length="8" name="PFC_Voltage_Limits" format="extended">
+            <Notes>Set the output voltage limits (mminimum and maximum)</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+
+            <Signal name="Output_voltage_min" offset="0" length="16" endianess="little">
+                <Notes>Minimum allowable output voltage</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+                <Value type="unsigned" slope="0.1" unit="V" min="0"/>
+            </Signal>
+            <Signal name="Output_voltage_max" offset="16" length="16" endianess="little">
+                <Notes>Maximum allowable output voltage</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+                <Value type="unsigned" slope="0.1" unit="V" max="800"/>
+            </Signal>
+            <Signal name="Input_voltage_min" offset="32" length="16" endianess="little">
+                <Notes>Minimum allowable input voltage</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+                <Value type="unsigned" slope="0.1" unit="V" min="0"/>
+            </Signal>
+            <Signal name="Input_voltage_max" offset="48" length="16" endianess="little">
+                <Notes>Maximum allowable input voltage</Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+                <Value type="unsigned" slope="0.1" unit="V" max="800"/>
+            </Signal>
+        </Message>
+
+        <Message id="0x20046" length="6" name="_PFC_Calibration_Offset_Update" format="extended">
+            <Notes>Update of the calibration table for offsets.</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+            <Multiplex name="Calibration_Index" offset="16" length="16">
+                <!--
+                    Index of the calibration value in the calibration table.
+                -->
+                <MuxGroup count="0">
+                    <Signal name="Voltage_Input_Calib" offset="0" length="16" endianess="little">
+                        <Notes>Voltage offset at the converter intput</Notes>
+                        <Consumer>
+                            <NodeRef id="2"/>
+                        </Consumer>
+                        <Value type="signed" unit="ADC Counts"/>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="Voltage_Output_Calib" offset="0" length="16" endianess="little">
+                        <Notes>Voltage offset at the converter output</Notes>
+                        <Consumer>
+                            <NodeRef id="2"/>
+                        </Consumer>
+                        <Value type="signed" unit="ADC Counts"/>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="Current_Rectifier_Calib" offset="0" length="16" endianess="little">
+                        <Notes>Current offset at the rectifiers</Notes>
+                        <Consumer>
+                            <NodeRef id="2"/>
+                        </Consumer>
+                        <Value type="signed" unit="ADC Counts" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="Current_Output_Calib" offset="0" length="16" endianess="little">
+                        <Notes>Current offset at the converter output</Notes>
+                        <Consumer>
+                            <NodeRef id="2"/>
+                        </Consumer>
+   	                    <Value type="signed" unit="ADC Counts" />
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+            <Signal name="CRC" offset="32" length="16" endianess="little">
+                <Notes>
+                    Checksum of bytes 0 to 3, CRC-CCITT, corresponding to qChecksum (www.qt.io)
+                </Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+   	            <Value type="unsigned" unit="-" />
+            </Signal>
+        </Message>
+
+        <Message id="0x20047" length="6" name="_PFC_Calibration_Scale_Update" format="extended">
+            <Notes>Update of the calibration table for offsets.</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+            <Multiplex name="Calibration_Index" offset="16" length="16">
+                <!--
+                    Index of the calibration value in the calibration table.
+                -->
+                <MuxGroup count="0">
+                    <Signal name="Voltage_Input_Calib" offset="0" length="16" endianess="little">
+                        <Notes>Voltage offset at the converter intput</Notes>
+                        <Consumer>
+                            <NodeRef id="2"/>
+                        </Consumer>
+                        <Value type="signed" slope="1.52587890625e-05" unit="scale = 1.0 + value"/>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="Voltage_Output_Calib" offset="0" length="16" endianess="little">
+                        <Notes>Voltage offset at the converter output</Notes>
+                        <Consumer>
+                            <NodeRef id="2"/>
+                        </Consumer>
+                        <Value type="signed" slope="1.52587890625e-05" unit="scale = 1.0 + value"/>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="Current_Rectifier_Calib" offset="0" length="16" endianess="little">
+                        <Notes>Current offset at the rectifiers</Notes>
+                        <Consumer>
+                            <NodeRef id="2"/>
+                        </Consumer>
+                        <Value type="signed" slope="1.52587890625e-05" unit="scale = 1.0 + value"/>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="Current_Output_Calib" offset="0" length="16" endianess="little">
+                        <Notes>Current offset at the converter output</Notes>
+                        <Consumer>
+                            <NodeRef id="2"/>
+                        </Consumer>
+                        <Value type="signed" slope="1.52587890625e-05" unit="scale = 1.0 + value"/>
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+            <Signal name="CRC" offset="32" length="16" endianess="little">
+                <Notes>
+                    Checksum of bytes 0 to 3, CRC-CCITT, corresponding to qChecksum (www.qt.io)
+                </Notes>
+                <Consumer>
+                    <NodeRef id="2"/>
+                </Consumer>
+   	            <Value type="unsigned" unit="-" />
+            </Signal>
+        </Message>
+
+        <Message id="0x28046" length="6" name="_PFC_Calibration_Adc_Scale" interval='1000' format="extended">
+            <Notes>
+                Adc scale (resolution) value of readouts.
+            </Notes>
+            <Producer>
+                <NodeRef id="2"/>
+            </Producer>
+            <Multiplex name="Adc_Index" offset="32" length="16">
+                <!--
+                    Index of the calibration value in the calibration table.
+                -->
+                <MuxGroup count="0">
+                    <Signal name="Current_In_Rectifier" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="1 / adc_bins" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="Current_Out" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="1 / adc_bins" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="Voltage_In" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="1 / adc_bins" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="Voltage_Out" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="1 / adc_bins" />
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+        </Message>
+
+        <Message id="0x28047" length="6" name="_PFC_Calibration_Adc_Fs" interval='1000' format="extended">
+            <Notes>
+                Adc fullscale value of readouts.
+            </Notes>
+            <Producer>
+                <NodeRef id="2"/>
+            </Producer>
+            <Multiplex name="Adc_Index" offset="32" length="16">
+                <!--
+                    Index of the calibration value in the calibration table.
+                -->
+                <MuxGroup count="0">
+                    <Signal name="Current_In_Rectifier" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="Fullscale" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="Current_Out" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="Fullscale" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="Voltage_In" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="Fullscale" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="Voltage_Out" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="Fullscale" />
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+        </Message>
+    </Bus>
+</NetworkDefinition>

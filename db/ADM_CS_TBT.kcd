@@ -1,0 +1,1145 @@
+<?xml version="1.0" ?>
+<NetworkDefinition xmlns="http://kayak.2codeornot2code.org/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="KCD_Definition.xsd">
+    <Document name="ADM_CS_TBT" version="1" author="[...]" company="Advantics" date="2023-05-30"/>
+
+    <Node id="0" name="User"/>
+    <Node id="16" name="ADM_CS_TBT"/>
+
+
+    <Bus name="ADM_CS_TBT" baudrate="500000">
+        <Message id="0x108000" length="8" name="THERMAL_Identification" interval="500" format="extended">
+            <Notes>Identification of the device</Notes>
+            <Producer>
+                <NodeRef id="16"/>
+            </Producer>
+
+            <Signal name="Device_type" offset="0" length="8">
+                <Notes>The device identification field, uniquely identifies the sender in the network</Notes>
+                <LabelSet>
+                    <Label name="THERMAL" value="16" />
+                </LabelSet>
+            </Signal>
+            <Signal name="HW_revision" offset="8" length="8">
+                <Notes>The hardware revision number</Notes>
+            </Signal>
+            <Signal name="HW_variant" offset="16" length="8">
+                <Notes>The DSP firmware revision number</Notes>
+            </Signal>
+            <Signal name="Stack_position" offset="24" length="8">
+                <Notes>Position of the module within the stack</Notes>
+            </Signal>
+            <Signal name="SN_number" offset="32" length="32">
+                <Notes>Unique module serial number</Notes>
+            </Signal>
+        </Message>
+
+        <Message id="0x108001" length="8" name="THERMAL_FwInfo" interval="500" format="extended">
+            <Notes>Git revision of the DSP firmware</Notes>
+            <Producer>
+                <NodeRef id="16"/>
+            </Producer>
+
+            <Multiplex name="FW_info_mux" offset="56" length="8">
+                <MuxGroup count="0">
+                    <Signal name="FW_revision_0" offset="0" length="8">
+                        <Notes>Character 0</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_1" offset="8" length="8">
+                        <Notes>Character 1</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_2" offset="16" length="8">
+                        <Notes>Character 2</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_3" offset="24" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_4" offset="32" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_5" offset="40" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_6" offset="48" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="FW_revision_7" offset="0" length="8">
+                        <Notes>Character 7</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_8" offset="8" length="8">
+                        <Notes>Character 8</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_9" offset="16" length="8">
+                        <Notes>Character 9</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_10" offset="24" length="8">
+                        <Notes>Character 10</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_11" offset="32" length="8">
+                        <Notes>Character 11</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_12" offset="40" length="8">
+                        <Notes>Character 12</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_13" offset="48" length="8">
+                        <Notes>Character 13</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="FW_datecode_0" offset="0" length="8">
+                        <Notes>Character 0</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_1" offset="8" length="8">
+                        <Notes>Character 1</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_2" offset="16" length="8">
+                        <Notes>Character 2</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_3" offset="24" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_4" offset="32" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_5" offset="40" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_6" offset="48" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="FW_datecode_7" offset="0" length="8">
+                        <Notes>Character 7</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_8" offset="8" length="8">
+                        <Notes>Character 8</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_9" offset="16" length="8">
+                        <Notes>Character 9</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_10" offset="24" length="8">
+                        <Notes>Character 10</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_11" offset="32" length="8">
+                        <Notes>Character 11</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_12" offset="40" length="8">
+                        <Notes>Character 12</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_13" offset="48" length="8">
+                        <Notes>Character 13</Notes>
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+        </Message>
+
+        <Message id="0x10800D" length="8" name="_THERMAL_Boot_FwInfo" interval="500" format="extended">
+            <Notes>Git revision of the bootloader firmware.</Notes>
+            <Producer>
+                <NodeRef id="16"/>
+            </Producer>
+
+            <Multiplex name="Boot_FW_info_mux" offset="56" length="8">
+                <MuxGroup count="0">
+                    <Signal name="FW_revision_0" offset="0" length="8">
+                        <Notes>Character 0</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_1" offset="8" length="8">
+                        <Notes>Character 1</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_2" offset="16" length="8">
+                        <Notes>Character 2</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_3" offset="24" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_4" offset="32" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_5" offset="40" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_6" offset="48" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="FW_revision_7" offset="0" length="8">
+                        <Notes>Character 7</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_8" offset="8" length="8">
+                        <Notes>Character 8</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_9" offset="16" length="8">
+                        <Notes>Character 9</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_10" offset="24" length="8">
+                        <Notes>Character 10</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_11" offset="32" length="8">
+                        <Notes>Character 11</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_12" offset="40" length="8">
+                        <Notes>Character 12</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_13" offset="48" length="8">
+                        <Notes>Character 13</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="FW_datecode_0" offset="0" length="8">
+                        <Notes>Character 0</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_1" offset="8" length="8">
+                        <Notes>Character 1</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_2" offset="16" length="8">
+                        <Notes>Character 2</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_3" offset="24" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_4" offset="32" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_5" offset="40" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_6" offset="48" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="FW_datecode_7" offset="0" length="8">
+                        <Notes>Character 7</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_8" offset="8" length="8">
+                        <Notes>Character 8</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_9" offset="16" length="8">
+                        <Notes>Character 9</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_10" offset="24" length="8">
+                        <Notes>Character 10</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_11" offset="32" length="8">
+                        <Notes>Character 11</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_12" offset="40" length="8">
+                        <Notes>Character 12</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_13" offset="48" length="8">
+                        <Notes>Character 13</Notes>
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+        </Message>
+
+        
+        <Message id="0x10800B" length="2" name="THERMAL_Status" interval="500" format="extended">
+            <Notes>Status and fault bitfield</Notes>
+            <Producer>
+                <NodeRef id="16"/>
+            </Producer>
+
+            <Signal name="Ready" offset="0" length="1" endianess="little">
+                <Notes></Notes>
+            </Signal>
+            <Signal name="Running" offset="1" length="1" endianess="little">
+                <Notes></Notes>
+            </Signal>
+        </Message>
+
+
+        <Message id="0x100050" length="1" name="THERMAL_Fault_Control" format="extended">
+            <Notes>Fault Control: actions to clear faults and reset the system</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+            <Signal name="Clear_Interlock" offset="0" length="1" endianess="little">
+                <Notes>Clears the filter interlock</Notes>
+                <Consumer>
+                    <NodeRef id="16"/>
+                </Consumer>
+            </Signal>
+            <Signal name="Reset_Processor" offset="1" length="1" endianess="little">
+                <Notes>Reset the module DSP</Notes>
+                <Consumer>
+                    <NodeRef id="16"/>
+                </Consumer>
+            </Signal>
+        </Message>
+
+
+        <Message id="0x100045" length="6" name="THERMAL_Stack_Control" format="extended">
+            <Notes>Module stack control</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+
+            <Signal name="Stack_position" offset="0" length="8" endianess="little">
+                <Notes>The module position within the stack</Notes>
+                <Consumer>
+                    <NodeRef id="16"/>
+                </Consumer>
+                <Value type="unsigned" slope="1"/>
+            </Signal>
+            <Signal name="Stack_size" offset="8" length="8" endianess="little">
+                <Notes>How many Filter converters are in stack in total</Notes>
+                <Consumer>
+                    <NodeRef id="16"/>
+                </Consumer>
+                <Value type="unsigned" slope="1"/>
+            </Signal>
+            <Signal name="SN_number" offset="16" length="32">
+                <Notes>Unique module serial number</Notes>
+                <Consumer>
+                    <NodeRef id="16"/>
+                </Consumer>
+            </Signal>
+        </Message>
+
+        <Message id="0x108002" length="8" name="THERMAL_Debug" interval="500" format="extended">
+            <Notes>Values for debugging of HW/SW problems</Notes>
+            <Producer>
+                <NodeRef id="16"/>
+            </Producer>
+
+            <Signal name="Status_Error_Code" offset="0" length="16">
+                <Notes>Main status / error code as defined in errno/errno.h</Notes>
+            </Signal>
+            <Signal name="Data_1" offset="16" length="16">
+                <Notes>Additional information for the error/status</Notes>
+            </Signal>
+            <Signal name="Data_2" offset="32" length="16">
+                <Notes>Additional information for the error/status</Notes>
+            </Signal>
+            <Signal name="Data_3" offset="48" length="16">
+                <Notes>Additional information for the error/status</Notes>
+            </Signal>
+        </Message>
+
+
+        <Message id="0x108100" length="8" name="SENSORS" interval="500" format="extended">
+            <Notes>thermal sensor 0.</Notes>
+            <Producer>
+                <NodeRef id="16"/>
+            </Producer>
+            
+            <Signal name="Detected_sensors" offset="0" length="8"  endianess="little">
+                <Notes>temperature of sensor 0 in celsius </Notes>
+              
+            </Signal>
+    
+        </Message>
+
+
+
+        <Message id="0x108101" length="8" name="SENSOR_1" interval="500" format="extended">
+            <Notes>thermal sensor 1.</Notes>
+            <Producer>
+                <NodeRef id="16"/>
+            </Producer>
+            
+            <Signal name="Temperature_object" offset="0" length="16"  endianess="little">
+                <Notes>temperature of sensor 1 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+                 
+            <Signal name="Temperature_sensor" offset="16" length="16"  endianess="little">
+                <Notes>temperature of sensor 1 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+
+            <Signal name="Emissivity" offset="32" length="16"  endianess="little">
+                <Notes>Emissivity of sensor 1 </Notes>
+                <Value slope="0.001"  type="unsigned" min="0" max="1"/>
+            </Signal>
+
+            <Signal name="NOT_AVAILABLE" offset="48" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_obj" offset="49" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_sensor" offset="50" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_emissivity" offset="51" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="sensor_error" offset="52" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+
+            
+            <Signal name="Address" offset="56" length="8"  endianess="little">
+                <Notes>i2C addr of the sensor</Notes>
+            </Signal>
+        </Message>
+        
+
+
+        
+
+        <Message id="0x108102" length="8" name="SENSOR_2" interval="500" format="extended">
+            <Notes>thermal sensor 1.</Notes>
+            <Producer>
+                <NodeRef id="16"/>
+            </Producer>
+            
+            <Signal name="Temperature_object" offset="0" length="16"  endianess="little">
+                <Notes>temperature of sensor 2 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+                 
+            <Signal name="Temperature_sensor" offset="16" length="16"  endianess="little">
+                <Notes>temperature of sensor 2 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+
+            <Signal name="Emissivity" offset="32" length="16"  endianess="little">
+                <Notes>Emissivity of sensor 2 </Notes>
+                <Value slope="0.001"  type="unsigned" min="0" max="1"/>
+            </Signal>
+
+            <Signal name="NOT_AVAILABLE" offset="48" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_obj" offset="49" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_sensor" offset="50" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_emissivity" offset="51" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="sensor_error" offset="52" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+
+            <Signal name="Address" offset="56" length="8"  endianess="little">
+                <Notes>i2C addr of the sensor</Notes>
+            </Signal>
+
+        </Message>
+
+                 
+
+        <Message id="0x108103" length="8" name="SENSOR_3" interval="500" format="extended">
+            <Notes>thermal sensor 3.</Notes>
+            <Producer>
+                <NodeRef id="16"/>
+            </Producer>
+            <Signal name="Temperature_object" offset="0" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+            <Signal name="Temperature_sensor" offset="16" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+
+            <Signal name="Emissivity" offset="32" length="16"  endianess="little">
+                <Notes>Emissivity of sensor 3 </Notes>
+                <Value slope="0.001"  type="unsigned" min="0" max="1"/>
+            </Signal>
+            <Signal name="NOT_AVAILABLE" offset="48" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_obj" offset="49" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_sensor" offset="50" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_emissivity" offset="51" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="sensor_error" offset="52" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Address" offset="56" length="8"  endianess="little">
+                <Notes>i2C addr of the sensor</Notes>
+            </Signal>
+        </Message>
+
+
+        <Message id="0x108104" length="8" name="SENSOR_4" interval="500" format="extended">
+            <Notes>thermal sensor 4.</Notes>
+            <Producer>
+                <NodeRef id="16"/>
+            </Producer>
+            <Signal name="Temperature_object" offset="0" length="16"  endianess="little">
+                <Notes>temperature of sensor 4 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+            <Signal name="Temperature_sensor" offset="16" length="16"  endianess="little">
+                <Notes>temperature of sensor 4  in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+
+            <Signal name="Emissivity" offset="32" length="16"  endianess="little">
+                <Notes>Emissivity of sensor 3 </Notes>
+                <Value slope="0.001"  type="unsigned" min="0" max="1"/>
+            </Signal>
+            <Signal name="NOT_AVAILABLE" offset="48" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_obj" offset="49" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_sensor" offset="50" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_emissivity" offset="51" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="sensor_error" offset="52" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Address" offset="56" length="8"  endianess="little">
+                <Notes>i2C addr of the sensor</Notes>
+            </Signal>
+        </Message>
+
+        <Message id="0x108105" length="8" name="SENSOR_5" interval="500" format="extended">
+            <Notes>thermal sensor 3.</Notes>
+            <Producer>
+                <NodeRef id="16"/>
+            </Producer>
+            <Signal name="Temperature_object" offset="0" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+            <Signal name="Temperature_sensor" offset="16" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+
+            <Signal name="Emissivity" offset="32" length="16"  endianess="little">
+                <Notes>Emissivity of sensor 3 </Notes>
+                <Value slope="0.001"  type="unsigned" min="0" max="1"/>
+            </Signal>
+            <Signal name="NOT_AVAILABLE" offset="48" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_obj" offset="49" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_sensor" offset="50" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_emissivity" offset="51" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="sensor_error" offset="52" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Address" offset="56" length="8"  endianess="little">
+                <Notes>i2C addr of the sensor</Notes>
+            </Signal>
+        </Message>
+
+        <Message id="0x108106" length="8" name="SENSOR_6" interval="500" format="extended">
+            <Notes>thermal sensor 3.</Notes>
+            <Producer>
+                <NodeRef id="16"/>
+            </Producer>
+            <Signal name="Temperature_object" offset="0" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+            <Signal name="Temperature_sensor" offset="16" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+
+            <Signal name="Emissivity" offset="32" length="16"  endianess="little">
+                <Notes>Emissivity of sensor 3 </Notes>
+                <Value slope="0.001"  type="unsigned" min="0" max="1"/>
+            </Signal>
+            <Signal name="NOT_AVAILABLE" offset="48" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_obj" offset="49" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_sensor" offset="50" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_emissivity" offset="51" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="sensor_error" offset="52" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Address" offset="56" length="8"  endianess="little">
+                <Notes>i2C addr of the sensor</Notes>
+            </Signal>
+        </Message>
+
+        <Message id="0x108107" length="8" name="SENSOR_7" interval="500" format="extended">
+            <Notes>thermal sensor 3.</Notes>
+            <Producer>
+                <NodeRef id="16"/>
+            </Producer>
+            <Signal name="Temperature_object" offset="0" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+            <Signal name="Temperature_sensor" offset="16" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+
+            <Signal name="Emissivity" offset="32" length="16"  endianess="little">
+                <Notes>Emissivity of sensor 3 </Notes>
+                <Value slope="0.001"  type="unsigned" min="0" max="1"/>
+            </Signal>
+            <Signal name="NOT_AVAILABLE" offset="48" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_obj" offset="49" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_sensor" offset="50" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_emissivity" offset="51" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="sensor_error" offset="52" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Address" offset="56" length="8"  endianess="little">
+                <Notes>i2C addr of the sensor</Notes>
+            </Signal>
+        </Message>
+
+        <Message id="0x108108" length="8" name="SENSOR_8" interval="500" format="extended">
+            <Notes>thermal sensor 3.</Notes>
+            <Producer>
+                <NodeRef id="16"/>
+            </Producer>
+            <Signal name="Temperature_object" offset="0" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+            <Signal name="Temperature_sensor" offset="16" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+
+            <Signal name="Emissivity" offset="32" length="16"  endianess="little">
+                <Notes>Emissivity of sensor 3 </Notes>
+                <Value slope="0.001"  type="unsigned" min="0" max="1"/>
+            </Signal>
+            <Signal name="NOT_AVAILABLE" offset="48" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_obj" offset="49" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_sensor" offset="50" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_emissivity" offset="51" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="sensor_error" offset="52" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Address" offset="56" length="8"  endianess="little">
+                <Notes>i2C addr of the sensor</Notes>
+            </Signal>
+        </Message>
+
+
+        <Message id="0x108109" length="8" name="SENSOR_9" interval="500" format="extended">
+            <Notes>thermal sensor 3.</Notes>
+            <Producer>
+                <NodeRef id="16"/>
+            </Producer>
+            <Signal name="Temperature_object" offset="0" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+            <Signal name="Temperature_sensor" offset="16" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+
+            <Signal name="Emissivity" offset="32" length="16"  endianess="little">
+                <Notes>Emissivity of sensor 3 </Notes>
+                <Value slope="0.001"  type="unsigned" min="0" max="1"/>
+            </Signal>
+            <Signal name="NOT_AVAILABLE" offset="48" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_obj" offset="49" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_sensor" offset="50" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_emissivity" offset="51" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="sensor_error" offset="52" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Address" offset="56" length="8"  endianess="little">
+                <Notes>i2C addr of the sensor</Notes>
+            </Signal>
+        </Message>
+
+
+        <Message id="0x10810A" length="8" name="SENSOR_10" interval="500" format="extended">
+            <Notes>thermal sensor 3.</Notes>
+            <Producer>
+                <NodeRef id="16"/>
+            </Producer>
+            <Signal name="Temperature_object" offset="0" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+            <Signal name="Temperature_sensor" offset="16" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+
+            <Signal name="Emissivity" offset="32" length="16"  endianess="little">
+                <Notes>Emissivity of sensor 3 </Notes>
+                <Value slope="0.001"  type="unsigned" min="0" max="1"/>
+            </Signal>
+            <Signal name="NOT_AVAILABLE" offset="48" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_obj" offset="49" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_sensor" offset="50" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_emissivity" offset="51" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="sensor_error" offset="52" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Address" offset="56" length="8"  endianess="little">
+                <Notes>i2C addr of the sensor</Notes>
+            </Signal>
+        </Message>
+
+        <Message id="0x10810B" length="8" name="SENSOR_11" interval="500" format="extended">
+            <Notes>thermal sensor 3.</Notes>
+            <Producer>
+                <NodeRef id="16"/>
+            </Producer>
+            <Signal name="Temperature_object" offset="0" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+            <Signal name="Temperature_sensor" offset="16" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+
+            <Signal name="Emissivity" offset="32" length="16"  endianess="little">
+                <Notes>Emissivity of sensor 3 </Notes>
+                <Value slope="0.001"  type="unsigned" min="0" max="1"/>
+            </Signal>
+            <Signal name="NOT_AVAILABLE" offset="48" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_obj" offset="49" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_sensor" offset="50" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_emissivity" offset="51" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="sensor_error" offset="52" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Address" offset="56" length="8"  endianess="little">
+                <Notes>i2C addr of the sensor</Notes>
+            </Signal>
+        </Message>
+
+
+        <Message id="0x10810C" length="8" name="SENSOR_12" interval="500" format="extended">
+            <Notes>thermal sensor 3.</Notes>
+            <Producer>
+                <NodeRef id="16"/>
+            </Producer>
+            <Signal name="Temperature_object" offset="0" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+            <Signal name="Temperature_sensor" offset="16" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+
+            <Signal name="Emissivity" offset="32" length="16"  endianess="little">
+                <Notes>Emissivity of sensor 3 </Notes>
+                <Value slope="0.001"  type="unsigned" min="0" max="1"/>
+            </Signal>
+            <Signal name="NOT_AVAILABLE" offset="48" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_obj" offset="49" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_sensor" offset="50" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_emissivity" offset="51" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="sensor_error" offset="52" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Address" offset="56" length="8"  endianess="little">
+                <Notes>i2C addr of the sensor</Notes>
+            </Signal>
+        </Message>
+
+
+        <Message id="0x10810D" length="8" name="SENSOR_13" interval="500" format="extended">
+            <Notes>thermal sensor 3.</Notes>
+            <Producer>
+                <NodeRef id="16"/>
+            </Producer>
+            <Signal name="Temperature_object" offset="0" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+            <Signal name="Temperature_sensor" offset="16" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+
+            <Signal name="Emissivity" offset="32" length="16"  endianess="little">
+                <Notes>Emissivity of sensor 3 </Notes>
+                <Value slope="0.001"  type="unsigned" min="0" max="1"/>
+            </Signal>
+            <Signal name="NOT_AVAILABLE" offset="48" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_obj" offset="49" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_sensor" offset="50" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_emissivity" offset="51" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="sensor_error" offset="52" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Address" offset="56" length="8"  endianess="little">
+                <Notes>i2C addr of the sensor</Notes>
+            </Signal>
+        </Message>
+
+
+
+        <Message id="0x10810E" length="8" name="SENSOR_14" interval="500" format="extended">
+            <Notes>thermal sensor 3.</Notes>
+            <Producer>
+                <NodeRef id="16"/>
+            </Producer>
+            <Signal name="Temperature_object" offset="0" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+            <Signal name="Temperature_sensor" offset="16" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+
+            <Signal name="Emissivity" offset="32" length="16"  endianess="little">
+                <Notes>Emissivity of sensor 3 </Notes>
+                <Value slope="0.001"  type="unsigned" min="0" max="1"/>
+            </Signal>
+            <Signal name="NOT_AVAILABLE" offset="48" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_obj" offset="49" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_sensor" offset="50" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_emissivity" offset="51" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="sensor_error" offset="52" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Address" offset="56" length="8"  endianess="little">
+                <Notes>i2C addr of the sensor</Notes>
+            </Signal>
+        </Message>
+
+
+        <Message id="0x10810F" length="8" name="SENSOR_15" interval="500" format="extended">
+            <Notes>thermal sensor 3.</Notes>
+            <Producer>
+                <NodeRef id="16"/>
+            </Producer>
+            <Signal name="Temperature_object" offset="0" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+            <Signal name="Temperature_sensor" offset="16" length="16"  endianess="little">
+                <Notes>temperature of sensor 3 in celsius </Notes>
+                <Value slope="0.01" unit="C" type="signed"/>
+            </Signal>
+
+            <Signal name="Emissivity" offset="32" length="16"  endianess="little">
+                <Notes>Emissivity of sensor 3 </Notes>
+                <Value slope="0.001"  type="unsigned" min="0" max="1"/>
+            </Signal>
+            <Signal name="NOT_AVAILABLE" offset="48" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_obj" offset="49" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_sensor" offset="50" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="crc_temp_emissivity" offset="51" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="sensor_error" offset="52" length="1"  endianess="little">
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Address" offset="56" length="8"  endianess="little">
+                <Notes>i2C addr of the sensor</Notes>
+            </Signal>
+        </Message>
+
+        <Message id="0x100200" length="4" name="SENSORS_Emisivity" format="extended">
+            <Notes>Set sensor emmisivity</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+            <Signal name="sensor_addr" offset="0" length="8" endianess="little">
+                <Notes>sensor addr </Notes>
+                <Consumer>
+                    <NodeRef id="16"/>
+                </Consumer>
+            </Signal>
+            <Signal name="emisivity" offset="8" length="16" endianess="little">
+                <Notes>emisivity</Notes>
+                <Consumer>
+                    <NodeRef id="16"/>
+                </Consumer>
+                 <Value type="unsigned" slope="0.001" unit="e" min="0" max="1"/>
+            </Signal>
+        </Message>
+
+        <Message id="0x100300" length="4" name="STATUS_LED" format="extended">
+            <Notes>Set sensor emmisivity</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+
+            <Signal name="red" offset="0" length="8" endianess="little">
+                <Notes>red</Notes>
+                <Consumer>
+                    <NodeRef id="16"/>
+                </Consumer>
+                 <Value type="unsigned"  unit="e" min="0" max="255"/>
+            </Signal>
+
+
+            <Signal name="green" offset="8" length="8" endianess="little">
+                <Notes>green</Notes>
+                <Consumer>
+                    <NodeRef id="16"/>
+                </Consumer>
+                 <Value type="unsigned"  unit="e" min="0" max="255"/>
+            </Signal>
+        
+            <Signal name="blue" offset="16" length="8" endianess="little">
+                    <Notes>green</Notes>
+                    <Consumer>
+                        <NodeRef id="16"/>
+                    </Consumer>
+                    <Value type="unsigned"  unit="e" min="0" max="255"/>
+            </Signal>
+              
+            <Signal name="blink" offset="24" length="8" endianess="little">
+                <Notes>green</Notes>
+                <Consumer>
+                    <NodeRef id="16"/>
+                </Consumer>
+                <Value type="unsigned"  unit="e" min="0" max="255"/>
+            </Signal>
+        </Message>
+
+    </Bus>
+</NetworkDefinition>

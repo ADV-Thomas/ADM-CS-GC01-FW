@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+<NetworkDefinition xmlns="http://kayak.2codeornot2code.org/1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="KCD_Definition.xsd">
+    <Document name="Sendyne_SFP200" version="1" author="[...]" company="Advantics" date="2019-11-27"/>
+
+    <Node id="0" name="Host"/>
+    <Node id="1" name="SFP200"/>
+
+    <Bus name="Sendyne_SFP200" baudrate="500000">
+        <Message id="0x0A100200" length="5" name="Response" format="extended">
+            <Producer>
+                <NodeRef id="1"/>
+            </Producer>
+
+            <Multiplex name="Reg" offset="0" length="8">
+                <MuxGroup count="32">
+                    <Signal name="Current" offset="8" length="32" endianess="big">
+                        <Value slope="0.000001" unit="A" type="signed" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="96">
+                    <Signal name="Voltage_0" offset="8" length="32" endianess="big">
+                        <Value slope="0.000001" unit="V" type="signed" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="97">
+                    <Signal name="Voltage_1" offset="8" length="32" endianess="big">
+                        <Value slope="0.000001" unit="V" type="signed" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="98">
+                    <Signal name="Voltage_2" offset="8" length="32" endianess="big">
+                        <Value slope="0.000001" unit="V" type="signed" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="128">
+                    <Signal name="Temperature" offset="8" length="32" endianess="big">
+                        <Value slope="0.001" unit="C" type="signed" />
+                    </Signal>
+                </MuxGroup>
+                <LabelSet>
+                    <Label name="Current" value="32" />
+                    <Label name="Voltage_0" value="96" />
+                    <Label name="Voltage_1" value="97" />
+                    <Label name="Voltage_2" value="98" />
+                    <Label name="Temperature" value="128" />
+                </LabelSet>
+            </Multiplex>
+        </Message>
+
+        <Message id="0x0A100201" length="1" name="Request" format="extended">
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+
+            <Signal name="Reg" offset="0" length="8">
+                <LabelSet>
+                    <Label name="Current" value="32" />
+                    <Label name="Voltage_0" value="96" />
+                    <Label name="Voltage_1" value="97" />
+                    <Label name="Voltage_2" value="98" />
+                    <Label name="Temperature" value="128" />
+                </LabelSet>
+            </Signal>
+        </Message>
+    </Bus>
+</NetworkDefinition>

@@ -1,0 +1,1948 @@
+<?xml version="1.0" ?>
+<NetworkDefinition xmlns="http://kayak.2codeornot2code.org/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="KCD_Definition.xsd">
+    <Document name="ADM_PC_VG11" version="1" author="[...]" company="Advantics" date="2022-10-13"/>
+
+    <Node id="0" name="User"/>
+	<Node id="12" name="ADM_PC_VG11_FM01"/>
+	<Node id="13" name="ADM_PC_VG11_FM02"/>
+
+    <Bus name="ADM_PC_VG11" baudrate="500000">
+        <Message id="0xC8000" length="8" name="VG11_AC_Identification" interval="1000" format="extended">
+            <Notes>Identification of the device</Notes>
+            <Producer>
+                <NodeRef id="12"/>
+            </Producer>
+
+            <Signal name="Device_type" offset="0" length="8">
+                <Notes>The device identification field, uniquely identifies the sender in the network</Notes>
+                <LabelSet>
+                    <Label name="VG11" value="12" />
+                </LabelSet>
+            </Signal>
+            <Signal name="HW_revision" offset="8" length="8">
+                <Notes>The hardware revision number</Notes>
+            </Signal>
+            <Signal name="HW_variant" offset="16" length="8">
+                <Notes>The DSP firmware revision number</Notes>
+            </Signal>
+            <Signal name="Stack_position" offset="24" length="8">
+                <Notes>Position of the module within the stack</Notes>
+            </Signal>
+            <Signal name="SN_number" offset="32" length="32">
+                <Notes>Unique module serial number</Notes>
+            </Signal>
+        </Message>
+		
+		<Message id="0xD8000" length="8" name="VG11_DC_Identification" interval="1000" format="extended">
+            <Notes>Identification of the device</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+
+            <Signal name="Device_type" offset="0" length="8">
+                <Notes>The device identification field, uniquely identifies the sender in the network</Notes>
+                <LabelSet>
+                    <Label name="VG11" value="12" />
+                </LabelSet>
+            </Signal>
+            <Signal name="HW_revision" offset="8" length="8">
+                <Notes>The hardware revision number</Notes>
+            </Signal>
+            <Signal name="HW_variant" offset="16" length="8">
+                <Notes>The DSP firmware revision number</Notes>
+            </Signal>
+            <Signal name="Stack_position" offset="24" length="8">
+                <Notes>Position of the module within the stack</Notes>
+            </Signal>
+            <Signal name="SN_number" offset="32" length="32">
+                <Notes>Unique module serial number</Notes>
+            </Signal>
+        </Message>
+
+        <Message id="0xC8001" length="8" name="VG11_AC_FwInfo" interval="1000" format="extended">
+            <Notes>Git revision of the DSP firmware</Notes>
+            <Producer>
+                <NodeRef id="12"/>
+            </Producer>
+
+            <Multiplex name="FW_info_mux" offset="56" length="8">
+                <MuxGroup count="0">
+                    <Signal name="FW_revision_0" offset="0" length="8">
+                        <Notes>Character 0</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_1" offset="8" length="8">
+                        <Notes>Character 1</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_2" offset="16" length="8">
+                        <Notes>Character 2</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_3" offset="24" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_4" offset="32" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_5" offset="40" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_6" offset="48" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="FW_revision_7" offset="0" length="8">
+                        <Notes>Character 7</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_8" offset="8" length="8">
+                        <Notes>Character 8</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_9" offset="16" length="8">
+                        <Notes>Character 9</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_10" offset="24" length="8">
+                        <Notes>Character 10</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_11" offset="32" length="8">
+                        <Notes>Character 11</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_12" offset="40" length="8">
+                        <Notes>Character 12</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_13" offset="48" length="8">
+                        <Notes>Character 13</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="FW_datecode_0" offset="0" length="8">
+                        <Notes>Character 0</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_1" offset="8" length="8">
+                        <Notes>Character 1</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_2" offset="16" length="8">
+                        <Notes>Character 2</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_3" offset="24" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_4" offset="32" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_5" offset="40" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_6" offset="48" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="FW_datecode_7" offset="0" length="8">
+                        <Notes>Character 7</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_8" offset="8" length="8">
+                        <Notes>Character 8</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_9" offset="16" length="8">
+                        <Notes>Character 9</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_10" offset="24" length="8">
+                        <Notes>Character 10</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_11" offset="32" length="8">
+                        <Notes>Character 11</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_12" offset="40" length="8">
+                        <Notes>Character 12</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_13" offset="48" length="8">
+                        <Notes>Character 13</Notes>
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+        </Message>
+
+        <Message id="0xD8001" length="8" name="VG11_DC_FwInfo" interval="1000" format="extended">
+            <Notes>Git revision of the DSP firmware</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+
+            <Multiplex name="FW_info_mux" offset="56" length="8">
+                <MuxGroup count="0">
+                    <Signal name="FW_revision_0" offset="0" length="8">
+                        <Notes>Character 0</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_1" offset="8" length="8">
+                        <Notes>Character 1</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_2" offset="16" length="8">
+                        <Notes>Character 2</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_3" offset="24" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_4" offset="32" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_5" offset="40" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_6" offset="48" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="FW_revision_7" offset="0" length="8">
+                        <Notes>Character 7</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_8" offset="8" length="8">
+                        <Notes>Character 8</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_9" offset="16" length="8">
+                        <Notes>Character 9</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_10" offset="24" length="8">
+                        <Notes>Character 10</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_11" offset="32" length="8">
+                        <Notes>Character 11</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_12" offset="40" length="8">
+                        <Notes>Character 12</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_13" offset="48" length="8">
+                        <Notes>Character 13</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="FW_datecode_0" offset="0" length="8">
+                        <Notes>Character 0</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_1" offset="8" length="8">
+                        <Notes>Character 1</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_2" offset="16" length="8">
+                        <Notes>Character 2</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_3" offset="24" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_4" offset="32" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_5" offset="40" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_6" offset="48" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="FW_datecode_7" offset="0" length="8">
+                        <Notes>Character 7</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_8" offset="8" length="8">
+                        <Notes>Character 8</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_9" offset="16" length="8">
+                        <Notes>Character 9</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_10" offset="24" length="8">
+                        <Notes>Character 10</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_11" offset="32" length="8">
+                        <Notes>Character 11</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_12" offset="40" length="8">
+                        <Notes>Character 12</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_13" offset="48" length="8">
+                        <Notes>Character 13</Notes>
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+        </Message>
+		
+        <Message id="0xC800D" length="8" name="_VG11_AC_Boot_FwInfo" interval="1000" format="extended">
+            <Notes>Git revision of the bootloader firmware.</Notes>
+            <Producer>
+                <NodeRef id="12"/>
+            </Producer>
+
+            <Multiplex name="Boot_FW_info_mux" offset="56" length="8">
+                <MuxGroup count="0">
+                    <Signal name="FW_revision_0" offset="0" length="8">
+                        <Notes>Character 0</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_1" offset="8" length="8">
+                        <Notes>Character 1</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_2" offset="16" length="8">
+                        <Notes>Character 2</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_3" offset="24" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_4" offset="32" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_5" offset="40" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_6" offset="48" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="FW_revision_7" offset="0" length="8">
+                        <Notes>Character 7</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_8" offset="8" length="8">
+                        <Notes>Character 8</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_9" offset="16" length="8">
+                        <Notes>Character 9</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_10" offset="24" length="8">
+                        <Notes>Character 10</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_11" offset="32" length="8">
+                        <Notes>Character 11</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_12" offset="40" length="8">
+                        <Notes>Character 12</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_13" offset="48" length="8">
+                        <Notes>Character 13</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="FW_datecode_0" offset="0" length="8">
+                        <Notes>Character 0</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_1" offset="8" length="8">
+                        <Notes>Character 1</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_2" offset="16" length="8">
+                        <Notes>Character 2</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_3" offset="24" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_4" offset="32" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_5" offset="40" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_6" offset="48" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="FW_datecode_7" offset="0" length="8">
+                        <Notes>Character 7</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_8" offset="8" length="8">
+                        <Notes>Character 8</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_9" offset="16" length="8">
+                        <Notes>Character 9</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_10" offset="24" length="8">
+                        <Notes>Character 10</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_11" offset="32" length="8">
+                        <Notes>Character 11</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_12" offset="40" length="8">
+                        <Notes>Character 12</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_13" offset="48" length="8">
+                        <Notes>Character 13</Notes>
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+        </Message>
+
+        <Message id="0xD800D" length="8" name="_VG11_DC_Boot_FwInfo" interval="1000" format="extended">
+            <Notes>Git revision of the bootloader firmware.</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+
+            <Multiplex name="Boot_FW_info_mux" offset="56" length="8">
+                <MuxGroup count="0">
+                    <Signal name="FW_revision_0" offset="0" length="8">
+                        <Notes>Character 0</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_1" offset="8" length="8">
+                        <Notes>Character 1</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_2" offset="16" length="8">
+                        <Notes>Character 2</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_3" offset="24" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_4" offset="32" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_5" offset="40" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_6" offset="48" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="FW_revision_7" offset="0" length="8">
+                        <Notes>Character 7</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_8" offset="8" length="8">
+                        <Notes>Character 8</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_9" offset="16" length="8">
+                        <Notes>Character 9</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_10" offset="24" length="8">
+                        <Notes>Character 10</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_11" offset="32" length="8">
+                        <Notes>Character 11</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_12" offset="40" length="8">
+                        <Notes>Character 12</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_13" offset="48" length="8">
+                        <Notes>Character 13</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="FW_datecode_0" offset="0" length="8">
+                        <Notes>Character 0</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_1" offset="8" length="8">
+                        <Notes>Character 1</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_2" offset="16" length="8">
+                        <Notes>Character 2</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_3" offset="24" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_4" offset="32" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_5" offset="40" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_6" offset="48" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="FW_datecode_7" offset="0" length="8">
+                        <Notes>Character 7</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_8" offset="8" length="8">
+                        <Notes>Character 8</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_9" offset="16" length="8">
+                        <Notes>Character 9</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_10" offset="24" length="8">
+                        <Notes>Character 10</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_11" offset="32" length="8">
+                        <Notes>Character 11</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_12" offset="40" length="8">
+                        <Notes>Character 12</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_13" offset="48" length="8">
+                        <Notes>Character 13</Notes>
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+        </Message>
+		
+        <Message id="0xC8002" length="8" name="VG11_AC_Debug" interval="1000" format="extended">
+            <Notes>Values for debugging of HW/SW problems</Notes>
+            <Producer>
+                <NodeRef id="12"/>
+            </Producer>
+
+            <Signal name="Status_Error_Code" offset="0" length="16">
+                <Notes>Main status / error code as defined in errno/errno.h</Notes>
+            </Signal>
+            <Signal name="Data_1" offset="16" length="16">
+                <Notes>Additional information for the error/status</Notes>
+            </Signal>
+            <Signal name="Data_2" offset="32" length="16">
+                <Notes>Additional information for the error/status</Notes>
+            </Signal>
+            <Signal name="Data_3" offset="48" length="16">
+                <Notes>Additional information for the error/status</Notes>
+            </Signal>
+        </Message>
+		
+		<Message id="0xD8002" length="8" name="VG11_DC_Debug" interval="1000" format="extended">
+            <Notes>Values for debugging of HW/SW problems</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+
+            <Signal name="Status_Error_Code" offset="0" length="16">
+                <Notes>Main status / error code as defined in errno/errno.h</Notes>
+            </Signal>
+            <Signal name="Data_1" offset="16" length="16">
+                <Notes>Additional information for the error/status</Notes>
+            </Signal>
+            <Signal name="Data_2" offset="32" length="16">
+                <Notes>Additional information for the error/status</Notes>
+            </Signal>
+            <Signal name="Data_3" offset="48" length="16">
+                <Notes>Additional information for the error/status</Notes>
+            </Signal>
+        </Message>
+		
+		<Message id="0xD8007" length="3" name="VG11_Status" interval="100" format="extended">
+            <Notes>Status bitfield</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+
+            <Signal name="Idle" offset="0" length="1" endianess="little">
+                <Notes>Indicates that the converter is idle (i.e: not operating).</Notes>
+            </Signal>
+            <Signal name="Relay_Connected" offset="1" length="1" endianess="little">
+                <Notes>Indicates that the mains relay is connected.</Notes>
+            </Signal>
+            <Signal name="Operating" offset="2" length="1" endianess="little">
+                <Notes>Converter is running and mosfets are switching.</Notes>
+            </Signal>
+            <Signal name="Grid_Following" offset="3" length="1" endianess="little">
+                <Notes>Indicates if the converter is operating in "Grid Following" mode
+                (i.e: attached to an existing grid)</Notes>
+            </Signal>
+            <Signal name="PWM" offset="5" length="1" endianess="little">
+                <Notes>The converter is running in PWM mode (customers must not use
+                this operation mode).</Notes>
+            </Signal>
+            <Signal name="PFC_Enabled" offset="6" length="1" endianess="little">
+                <Notes>PFC enabled</Notes>
+            </Signal>
+            <Signal name="AC_DAB_Enabled" offset="7" length="1" endianess="little">
+                <Notes>AC side DAB is enabled</Notes>
+            </Signal>
+            <Signal name="DC_DAB_Enabled" offset="8" length="1" endianess="little">
+                <Notes>DC side DAB is enabled</Notes>
+            </Signal>
+            <Signal name="Buck_Enabled" offset="9" length="1" endianess="little">
+                <Notes>Buck is enabled</Notes>
+            </Signal>
+            <Signal name="State" offset="16" length="8" endianess="little">
+                <Notes>For debugging and internal use. User can ignore it.</Notes>
+            </Signal>
+        </Message>
+
+        <Message id="0xD0007" length="2" name="VG11_Mode_Control" format="extended">
+            <Notes>Operation Mode control: sets the converter operation mode</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+
+            <Signal name="Enable" offset="0" length="1" endianess="little">
+                <Notes>Enable the converter.</Notes>
+                <Consumer>
+                    <NodeRef id="13"/>
+                </Consumer>
+            </Signal>
+            <Signal name="Grid_Following" offset="1" length="1" endianess="little">
+                <Notes>Set "Grid Following" mode (i.e: attached to an existing grid).</Notes>
+                <Consumer>
+                    <NodeRef id="13"/>
+                </Consumer>
+            </Signal>
+            <Signal name="PWM" offset="3" length="1" endianess="little">
+                <Notes>Users MUST NOT use this mode. Only for debugging and internal purposes.</Notes>
+                <Consumer>
+                    <NodeRef id="13"/>
+                </Consumer>
+            </Signal>
+        </Message>
+
+        <Message id="0xD0044" length="6" name="VG11_Voltage_Setpoint_Control" format="extended">
+            <Notes>This message is used to set the voltage setpoint</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+
+            <Signal name="Voltage_Setpoint" offset="0" length="16" endianess="little">
+                <Notes>Voltage setpoint. For Grid Following mode, this selects the DC output 
+                voltage setpoint.</Notes>
+                <Consumer>
+                    <NodeRef id="13"/>
+                </Consumer>
+                <Value type="unsigned" slope="0.1" min="0" max="1000" unit="V"/>
+            </Signal>
+        </Message>
+
+        <Message id="0xD0043" length="6" name="VG11_Current_Setpoint_Control" format="extended">
+            <Notes>This message is used to set the current setpoint</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+
+            <Signal name="Current_Setpoint" offset="0" length="16" endianess="little">
+                <Notes>Current setpoint. For Grid Following mode, this selects the DC output 
+                current setpoint.</Notes>
+                <Consumer>
+                    <NodeRef id="13"/>
+                </Consumer>
+                <Value type="signed" slope="0.1" min="-35" max="35" unit="A"/>
+            </Signal>
+        </Message>
+
+        <Message id="0xC8006" length="3" name="VG11_AC_Faults" interval="100" format="extended">
+            <Notes>Fault bitfield</Notes>
+            <Producer>
+                <NodeRef id="12"/>
+            </Producer>
+
+            <Signal name="Protection_trip_internal" offset="0" length="1" endianess="little">
+                <Notes>This flagg is asserted if the interlock is open due to an internal fault condition (self-protection)</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Protection_trip_external" offset="1" length="1" endianess="little">
+                <Notes>This flag is asserted if the interlock is open due to an external condition received in the module.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Mains_Voltage" offset="2" length="1" endianess="little">
+                <Notes>Mains voltage out of tolerance</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Mains_Frequency" offset="3" length="1" endianess="little">
+                <Notes>Mains frequency out of tolerance</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Precharge" offset="4" length="1" endianess="little">
+                <Notes>Precharge failed (check output voltage)</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Mains_Monitor" offset="5" length="1" endianess="little">
+                <Notes>Grid health monitor is not ready</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Input_overvoltage" offset="6" length="1" endianess="little">
+                <Notes>Input overvoltage condition. The overvoltage condition is asserted when the measured input voltage is over the programmed voltage limit.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Input_overcurrent" offset="7" length="1" endianess="little">
+                <Notes>This flag is asserted when the current through the phases if over the defined limit</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Transformer_overcurrent" offset="8" length="1" endianess="little">
+                <Notes>This flag is asserted when the current through the DC bus is over the defined limit</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Bus_overvoltage" offset="9" length="1" endianess="little">
+                <Notes>This flag is asserted when the temperature of the rectifier block is too high.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="FSI_synchronization" offset="10" length="1" endianess="little">
+                <Notes>A failure when synchronizing internal communication channel</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Bridge_overtemperature" offset="11" length="1" endianess="little">
+                <Notes>This flag is asserted when the temperature is too high.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Keep_Alive_not_served" offset="13" length="1" endianess="little">
+                <Notes>The Keep Alive feature is enabled but it was not served with the periodic message.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="NFO" offset="20" length="1" endianess="little">
+                <Notes></Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Measurement_system_failure" offset="21" length="1" endianess="little">
+                <Notes>The voltages/currents measurement system is malfunctionning, and readouts are not guaranteed to be accurate.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="EEPROM_failure" offset="22" length="1" endianess="little">
+                <Notes>The configuration EEPROM failed to load or save the module configuration.</Notes>
+                <LabelSet> 
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="System" offset="23" length="1" endianess="little">
+                <Notes></Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+        </Message>
+		
+        <Message id="0xD8006" length="3" name="VG11_DC_Faults" interval="100" format="extended">
+            <Notes>Fault bitfield</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+
+            <Signal name="Protection_trip_internal" offset="0" length="1" endianess="little">
+                <Notes>This flagg is asserted if the interlock is open due to an internal fault condition (self-protection)</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Protection_trip_external" offset="1" length="1" endianess="little">
+                <Notes>This flag is asserted if the interlock is open due to an external condition received in the module.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Output_overvoltage" offset="6" length="1" endianess="little">
+                <Notes>Input overvoltage condition. The overvoltage condition is asserted when the measured input voltage is over the programmed voltage limit.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Output_overcurrent" offset="7" length="1" endianess="little">
+                <Notes>This flag is asserted when the current through the phases if over the defined limit</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Transformer_overcurrent" offset="8" length="1" endianess="little">
+                <Notes>This flag is asserted when the current through the DC bus is over the defined limit</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Bus_overvoltage" offset="9" length="1" endianess="little">
+                <Notes>This flag is asserted when the temperature of the rectifier block is too high.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="FSI_synchronization" offset="10" length="1" endianess="little">
+                <Notes>A failure when synchronizing internal communication channel</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Bridge_overtemperature" offset="11" length="1" endianess="little">
+                <Notes>This flag is asserted when the temperature is too high.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Magnetics_overtemperature" offset="12" length="1" endianess="little">
+                <Notes>This flag is asserted when the temperature is too high.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Keep_Alive_not_served" offset="13" length="1" endianess="little">
+                <Notes>The Keep Alive feature is enabled but it was not served with the periodic message.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="NFO" offset="20" length="1" endianess="little">
+                <Notes></Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Measurement_system_failure" offset="21" length="1" endianess="little">
+                <Notes>The voltages/currents measurement system is malfunctionning, and readouts are not guaranteed to be accurate.</Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="EEPROM_failure" offset="22" length="1" endianess="little">
+                <Notes>The configuration EEPROM failed to load or save the module configuration.</Notes>
+                <LabelSet> 
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="System" offset="23" length="1" endianess="little">
+                <Notes></Notes>
+                <LabelSet>
+                    <Label name="fault" value="1" type="error"/>
+                </LabelSet>
+            </Signal>
+        </Message>
+
+        <Message id="0xC8003" length="6" name="VG11_AC_Currents" interval="100" format="extended">
+            <Notes>Current readouts at the AC side of the power module.</Notes>
+            <Producer>
+                <NodeRef id="12"/>
+            </Producer>
+
+            <Signal name="Current_Mains_A" offset="0" length="16" endianess="little">
+                <Notes>RMS Current measured at the converter input phase A.</Notes>
+                <Value slope="0.01" unit="A" type="signed"/>
+            </Signal>
+            <Signal name="Current_Mains_B" offset="16" length="16" endianess="little">
+                <Notes>RMS Current measured at the converter input phase B.</Notes>
+                <Value slope="0.01" unit="A" type="signed"/>
+            </Signal>
+            <Signal name="Current_Transformer" offset="32" length="16" endianess="little">
+                <Notes>RMS current measured at the primary side of the high-frequency transformer.</Notes>
+                <Value slope="0.01" unit="A" type="signed"/>
+            </Signal>
+        </Message>
+		
+		<Message id="0xD8003" length="4" name="VG11_DC_Currents" interval="100" format="extended">
+            <Notes>Current readouts at the DC side of the power module.</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+
+            <Signal name="Current_Output" offset="0" length="16" endianess="little">
+                <Notes>DC Current measured at measured output</Notes>
+                <Value slope="0.01" unit="A" type="signed"/>
+            </Signal>
+            <Signal name="Current_Transformer" offset="16" length="16" endianess="little">
+                <Notes>RMS current measured at the secondary side of the high-frequency transformer.</Notes>
+                <Value slope="0.01" unit="A" type="signed"/>
+            </Signal>
+        </Message>
+
+        <Message id="0xC8004" length="8" name="VG11_AC_Voltages" interval="100" format="extended">
+            <Notes>Voltage readouts at the AC side of the power module.</Notes>
+            <Producer>
+                <NodeRef id="12"/>
+            </Producer>
+
+            <Signal name="Voltage_Mains" offset="0" length="16" endianess="little">
+                <Notes>RMS Voltage measured at mains input</Notes>
+                <Value slope="0.1" unit="V" type="signed"/>
+            </Signal>
+            <Signal name="Voltage_Precharge" offset="16" length="16" endianess="little">
+                <Notes>RMS Voltage measured after the precharge circuit</Notes>
+                <Value slope="0.1" unit="V" type="signed"/>
+            </Signal>
+            <Signal name="Voltage_DC_Bus_Pos" offset="32" length="16" endianess="little">
+                <Notes>DC voltage measured at the primary DC Bus possitive side.</Notes>
+                <Value slope="0.1" unit="V" type="signed"/>
+            </Signal>
+            <Signal name="Voltage_DC_Bus_Neg" offset="48" length="16" endianess="little">
+                <Notes>DC voltage measured at the primary DC Bus negative side.</Notes>
+                <Value slope="0.1" unit="V" type="signed"/>
+            </Signal>
+        </Message>
+		
+		<Message id="0xD8004" length="4" name="VG11_DC_Voltages" interval="100" format="extended">
+            <Notes>Voltage readouts at the AC side of the power module.</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+
+            <Signal name="Voltage_Output" offset="0" length="16" endianess="little">
+                <Notes>DC voltage measured at the output</Notes>
+                <Value slope="0.1" unit="V" type="signed"/>
+            </Signal>
+            <Signal name="Voltage_DC_Bus" offset="16" length="16" endianess="little">
+                <Notes>DC voltage measured at the secondary DC Bus</Notes>
+                <Value slope="0.1" unit="V" type="signed"/>
+            </Signal>
+        </Message>
+
+        <Message id="0xC800C" length="8" name="VG11_Mains" interval="1000" format="extended">
+            <Notes>Three-Phase mains health (frequency, power factor...)</Notes>
+            <Producer>
+                <NodeRef id="12"/>
+            </Producer>
+
+            <Signal name="Frequency" offset="0" length="16" endianess="little">
+                <Notes>Frequency of Three-Phase system</Notes>
+                <Value slope="0.01" unit="Hz" type="unsigned"/>
+            </Signal>
+            <Signal name="Power_factor" offset="16" length="16" endianess="little">
+                <Notes>Measured power factor</Notes>
+                <Value slope="0.005" type="signed"/> 
+            </Signal>
+            <Signal name="Active_Power" offset="32" length="16" endianess="little">
+                <Notes>Measured Active power (kW)</Notes>
+                <Value slope="0.1" type="signed"/> 
+            </Signal>
+            <Signal name="Reactive_Power" offset="48" length="16" endianess="little">
+                <Notes>Measured Reactive power (kVA)</Notes>
+                <Value slope="0.1" type="signed"/> 
+            </Signal>
+        </Message>
+
+        <Message id="0xC8005" length="2" name="VG11_AC_Temperatures" interval="1000" format="extended">
+            <Notes>Readouts of the module temperature sensors</Notes>
+            <Producer>
+                <NodeRef id="12"/>
+            </Producer>
+
+            <Signal name="Temp_Bridge" offset="0" length="16">
+                <Notes>Temperature of the MOSFET block for primary side</Notes>
+                <Value type="signed" slope="0.01" unit="°C"/>
+            </Signal>
+        </Message>
+		
+        <Message id="0xD8005" length="4" name="VG11_DC_Temperatures" interval="1000" format="extended">
+            <Notes>Readouts of the module temperature sensors</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+
+            <Signal name="Temp_Bridge" offset="0" length="16">
+                <Notes>Temperature of the MOSFET block for secondary side</Notes>
+                <Value type="signed" slope="0.01" unit="°C"/>
+            </Signal>
+            <Signal name="Temp_Magnetics" offset="16" length="16">
+                <Notes>Temperature of the magnetics for secondary side</Notes>
+                <Value type="signed" slope="0.01" unit="°C"/>
+            </Signal>
+        </Message>
+
+        <Message id="0xC0050" length="1" name="VG11_AC_Fault_Control" format="extended">
+            <Notes>Fault Control: actions to clear faults and reset the system</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+
+            <Signal name="Clear_Interlock" offset="0" length="1" endianess="little">
+                <Notes>Clears the converter interlock</Notes>
+                <Consumer>
+                    <NodeRef id="12"/>
+                </Consumer>
+            </Signal>
+            <Signal name="Reset_Processor" offset="1" length="1" endianess="little">
+                <Notes>Reset the converter DSP</Notes>
+                <Consumer>
+                    <NodeRef id="12"/>
+                </Consumer>
+            </Signal>
+            <Signal name="Trip_Interlock" offset="2" length="1" endianess="little">
+                <Notes>Trip the inetrnal Interlock</Notes>
+                <Consumer>
+                    <NodeRef id="12"/>
+                </Consumer>
+            </Signal>
+        </Message>
+
+        <Message id="0xD0050" length="1" name="VG11_DC_Fault_Control" format="extended">
+            <Notes>Fault Control: actions to clear faults and reset the system</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+
+            <Signal name="Clear_Interlock" offset="0" length="1" endianess="little">
+                <Notes>Clears the converter interlock</Notes>
+                <Consumer>
+                    <NodeRef id="13"/>
+                </Consumer>
+            </Signal>
+            <Signal name="Reset_Processor" offset="1" length="1" endianess="little">
+                <Notes>Reset the converter DSP</Notes>
+                <Consumer>
+                    <NodeRef id="13"/>
+                </Consumer>
+            </Signal>
+            <Signal name="Trip_Interlock" offset="2" length="1" endianess="little">
+                <Notes>Trip the inetrnal Interlock</Notes>
+                <Consumer>
+                    <NodeRef id="13"/>
+                </Consumer>
+            </Signal>
+        </Message>
+
+        <Message id="0xC0051" length="1" name="VG11_AC_Relay_Control" format="extended">
+            <Notes>ONLY FOR INTERNAL USE. Users must NOT use this message.</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+
+            <Signal name="Relay_Precharge" offset="0" length="1" endianess="little">
+                <Notes>Clears the converter interlock</Notes>
+                <Consumer>
+                    <NodeRef id="12"/>
+                </Consumer>
+            </Signal>
+            <Signal name="Relay_Mains" offset="1" length="1" endianess="little">
+                <Notes>Reset the converter DSP</Notes>
+                <Consumer>
+                    <NodeRef id="12"/>
+                </Consumer>
+            </Signal>
+        </Message>
+
+        <Message id="0xC0052" length="3" name="VG11_AC_DAB_control" format="extended">
+            <Notes>ONLY FOR INTERNAL USE. Users must NOT use this message.</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+            <Signal name="DAB_enable" offset="0" length="1" endianess="little">
+                <Notes>Enable DAB switching</Notes>
+                <Consumer>
+                    <NodeRef id="12"/>
+                </Consumer>
+            </Signal>
+ 
+            <Signal name="Phase_shift" offset="8" length="16" endianess="little">
+                <Notes>Phase shift of DAB in degrees</Notes>
+                <Value slope="0.1" type="signed"/> 
+                <Consumer>
+                    <NodeRef id="12"/>
+                </Consumer>
+            </Signal>
+        </Message>
+
+        <Message id="0xC0053" length="3" name="VG11_AC_PFC_control" format="extended">
+            <Notes>ONLY FOR INTERNAL USE. Users must NOT use this message.</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+            <Signal name="PFC_enable" offset="0" length="1" endianess="little">
+                <Notes>Enable PFC switching</Notes>
+                <Consumer>
+                    <NodeRef id="12"/>
+                </Consumer>
+            </Signal>
+ 
+            <Signal name="PWM_Duty" offset="8" length="16" endianess="little">
+                <Notes>Duty cycle of the PFC in percentage</Notes>
+                <Consumer>
+                    <NodeRef id="12"/>
+                </Consumer>
+                <Value type="unsigned" slope="0.001525902" unit="%"/>
+            </Signal>
+        </Message>
+
+        <Message id="0xD0051" length="3" name="VG11_DC_DAB_control" format="extended">
+            <Notes>ONLY FOR INTERNAL USE. Users must NOT use this message.</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+            <Signal name="DAB_enable" offset="0" length="1" endianess="little">
+                <Notes>Enable DAB switching</Notes>
+                <Consumer>
+                    <NodeRef id="13"/>
+                </Consumer>
+            </Signal>
+ 
+            <Signal name="Phase_shift" offset="8" length="16" endianess="little">
+                <Notes>Phase shift of DAB in degrees</Notes>
+                <Value slope="0.1" type="signed"/> 
+                <Consumer>
+                    <NodeRef id="13"/>
+                </Consumer>
+            </Signal>
+        </Message>
+
+        <Message id="0xD0052" length="3" name="VG11_DC_Buck_control" format="extended">
+            <Notes>ONLY FOR INTERNAL USE. Users must NOT use this message.</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+            <Signal name="Buck_enable" offset="0" length="1" endianess="little">
+                <Notes>Enable Buck switching</Notes>
+                <Consumer>
+                    <NodeRef id="13"/>
+                </Consumer>
+            </Signal>
+ 
+            <Signal name="PWM_Duty" offset="8" length="16" endianess="little">
+                <Notes>Duty cycle of the Buck in percentage</Notes>
+                <Consumer>
+                    <NodeRef id="13"/>
+                </Consumer>
+                <Value type="unsigned" slope="0.001525902" unit="%"/>
+            </Signal>
+        </Message>
+
+
+        <Message id="0xC0045" length="6" name="VG11_AC_Stack_Control" format="extended">
+            <Notes>VG11 stack control</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+
+            <Signal name="Stack_position" offset="0" length="8" endianess="little">
+                <Notes>The converter position within the stack</Notes>
+                <Consumer>
+                    <NodeRef id="12"/>
+                </Consumer>
+                <Value type="unsigned" slope="1"/>
+            </Signal>
+            <Signal name="Stack_size" offset="8" length="8" endianess="little">
+                <Notes>Deprecated</Notes>
+                <Consumer>
+                    <NodeRef id="12"/>
+                </Consumer>
+                <Value type="unsigned" slope="1"/>
+            </Signal>
+            <Signal name="SN_number" offset="16" length="32">
+                <Notes>Unique module serial number</Notes>
+                <Consumer>
+                    <NodeRef id="12"/>
+                </Consumer>
+            </Signal>
+        </Message>
+		
+        <Message id="0xD0045" length="6" name="VG11_DC_Stack_Control" format="extended">
+            <Notes>VG11 stack control</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+
+            <Signal name="Stack_position" offset="0" length="8" endianess="little">
+                <Notes>The converter position within the stack</Notes>
+                <Consumer>
+                    <NodeRef id="13"/>
+                </Consumer>
+                <Value type="unsigned" slope="1"/>
+            </Signal>
+            <Signal name="Stack_size" offset="8" length="8" endianess="little">
+                <Notes>Deprecated</Notes>
+                <Consumer>
+                    <NodeRef id="13"/>
+                </Consumer>
+                <Value type="unsigned" slope="1"/>
+            </Signal>
+            <Signal name="SN_number" offset="16" length="32">
+                <Notes>Unique module serial number</Notes>
+                <Consumer>
+                    <NodeRef id="13"/>
+                </Consumer>
+            </Signal>
+        </Message>
+
+        <Message id="0xD0061" length="8" name="VG11_System_Flags_Control" format="extended">
+            <Notes>Control the system flags</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+
+            <Signal name="Factory_mode" offset="0" length="1" endianess="little">
+                <Notes>Customers MUST NOT USE this bit. If set to 1, module will enter in factory mode. </Notes>
+                <Consumer>
+                    <NodeRef id="13"/>
+                </Consumer>
+            </Signal>
+        </Message>	
+
+        <Message id="0xC8020" length="6" name="_VG11_AC_Currents_Raw" interval="100" format="extended">
+            <Notes>Current of phases A, B and transformer</Notes>
+            <Producer>
+                <NodeRef id="12"/>
+            </Producer>
+
+            <Signal name="Current_Mains_A" offset="0" length="16" endianess="little">
+                <Value type="signed"/>
+            </Signal>
+            <Signal name="Current_Mains_B" offset="16" length="16" endianess="little">
+                <Value type="signed"/>
+            </Signal>
+            <Signal name="Current_Transformer" offset="32" length="16" endianess="little">
+                <Value type="signed"/>
+            </Signal>
+        </Message>
+		
+        <Message id="0xD8020" length="4" name="_VG11_DC_Currents_Raw" interval="100" format="extended">
+            <Notes>Output and transformer current</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+
+            <Signal name="Current_Out" offset="0" length="16" endianess="little">
+                <Value type="signed"/>
+            </Signal>
+            <Signal name="Current_Transformer" offset="16" length="16" endianess="little">
+                <Value type="signed"/>
+            </Signal>
+        </Message>
+
+        <Message id="0xC8021" length="8" name="_VG11_AC_Voltages_Raw" interval="100" format="extended">
+            <Notes>Measured raw voltages</Notes>
+            <Producer>
+                <NodeRef id="12"/>
+            </Producer>
+
+            <Signal name="Voltage_Mains" offset="0" length="16" endianess="little">
+                <Value type="signed"/>
+            </Signal>
+            <Signal name="Voltage_Precharge" offset="16" length="16" endianess="little">
+                <Value type="signed"/>
+            </Signal>
+            <Signal name="Voltage_DC_Bus_Pos" offset="32" length="16" endianess="little">
+                <Value type="signed"/>
+            </Signal>
+            <Signal name="Voltage_DC_Bus_Neg" offset="48" length="16" endianess="little">
+                <Value type="signed"/>
+            </Signal>
+        </Message> 
+
+        <Message id="0xD8021" length="4" name="_VG11_DC_Voltages_Raw" interval="100" format="extended">
+            <Notes>Measured raw voltages</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+
+            <Signal name="Voltage_Out" offset="0" length="16" endianess="little">
+                <Value type="signed"/>
+            </Signal>
+            <Signal name="Voltage_DC_Bus" offset="16" length="16" endianess="little">
+                <Value type="signed"/>
+            </Signal>
+        </Message>		
+
+        <Message id="0xC0046" length="6" name="_VG11_AC_Calibration_Offset_Update" format="extended">
+            <Notes>Update of the calibration table for offsets.</Notes> 
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+            <Multiplex name="Calibration_Index" offset="16" length="16">
+                <!--
+                    Index of the calibration value in the calibration table.
+                -->
+                <MuxGroup count="0">
+                    <Signal name="Current_Mains_A" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="12"/>
+                        </Consumer>
+                        <Value type="signed" unit="ADC Counts"/>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="Current_Mains_B" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="12"/>
+                        </Consumer>
+                        <Value type="signed" unit="ADC Counts"/>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="Current_Transformer" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="12"/>
+                        </Consumer>
+                        <Value type="signed" unit="ADC Counts"/>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="Voltage_Mains" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="12"/>
+                        </Consumer>
+                        <Value type="signed" unit="ADC Counts"/>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="4">
+                    <Signal name="Voltage_Precharge" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="12"/>
+                        </Consumer>
+                        <Value type="signed" unit="ADC Counts"/>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="5">
+                    <Signal name="Voltage_DC_Bus_pos" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="12"/>
+                        </Consumer>
+                        <Value type="signed" unit="ADC Counts"/>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="6">
+                    <Signal name="Voltage_DC_Bus_neg" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="12"/>
+                        </Consumer>
+                        <Value type="signed" unit="ADC Counts"/>
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+            <Signal name="CRC" offset="32" length="16" endianess="little">
+                <Notes>Checksum of bytes 0 to 3, CRC-CCITT, corresponding to qChecksum (www.qt.io)</Notes>
+                <Consumer>
+                    <NodeRef id="12"/>
+                </Consumer>
+                <Value type="unsigned" unit="-"/>
+            </Signal>
+        </Message>
+		
+        <Message id="0xD0046" length="6" name="_VG11_DC_Calibration_Offset_Update" format="extended">
+            <Notes>Update of the calibration table for offsets.</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+            <Multiplex name="Calibration_Index" offset="16" length="16">
+                <!--
+                    Index of the calibration value in the calibration table.
+                -->
+                <MuxGroup count="0">
+                    <Signal name="Current_Out" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="13"/>
+                        </Consumer>
+                        <Value type="signed" unit="ADC Counts"/>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="Current_Transformer" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="13"/>
+                        </Consumer>
+                        <Value type="signed" unit="ADC Counts"/>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="Voltage_Out" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="13"/>
+                        </Consumer>
+                        <Value type="signed" unit="ADC Counts"/>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="Voltage_DC_Bus" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="13"/>
+                        </Consumer>
+                        <Value type="signed" unit="ADC Counts"/>
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+            <Signal name="CRC" offset="32" length="16" endianess="little">
+                <Notes>Checksum of bytes 0 to 3, CRC-CCITT, corresponding to qChecksum (www.qt.io)</Notes>
+                <Consumer>
+                    <NodeRef id="13"/>
+                </Consumer>
+                <Value type="unsigned" unit="-"/>
+            </Signal>
+        </Message>
+
+        <Message id="0xC0047" length="6" name="_VG11_AC_Calibration_Scale_Update" format="extended">
+            <Notes>Update of the calibration table for scales.</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+            <Multiplex name="Calibration_Index" offset="16" length="16">
+                <!--
+                    Index of the calibration value in the calibration table.
+                -->
+                <MuxGroup count="0">
+                    <Signal name="Current_Mains_A" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="12"/>
+                        </Consumer>
+                        <Value type="signed" slope="1.52587890625e-05" unit="scale = 1.0 + value"/>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="Current_Mains_B" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="12"/>
+                        </Consumer>
+                        <Value type="signed" slope="1.52587890625e-05" unit="scale = 1.0 + value"/>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="Current_Transformer" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="12"/>
+                        </Consumer>
+                        <Value type="signed" slope="1.52587890625e-05" unit="scale = 1.0 + value"/>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="Voltage_Mains" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="12"/>
+                        </Consumer>
+                        <Value type="signed" slope="1.52587890625e-05" unit="scale = 1.0 + value"/>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="4">
+                    <Signal name="Voltage_Precharge" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="12"/>
+                        </Consumer>
+                        <Value type="signed" slope="1.52587890625e-05" unit="scale = 1.0 + value"/>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="5">
+                    <Signal name="Voltage_DC_Bus_pos" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="12"/>
+                        </Consumer>
+                        <Value type="signed" slope="1.52587890625e-05" unit="scale = 1.0 + value"/>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="6">
+                    <Signal name="Voltage_DC_Bus_neg" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="12"/>
+                        </Consumer>
+                        <Value type="signed" slope="1.52587890625e-05" unit="scale = 1.0 + value"/>
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+            <Signal name="CRC" offset="32" length="16" endianess="little">
+                <Notes>Checksum of bytes 0 to 3, CRC-CCITT, corresponding to qChecksum (www.qt.io)</Notes>
+                <Consumer>
+                    <NodeRef id="12"/>
+                </Consumer>
+                <Value type="unsigned" unit="-"/>
+            </Signal>
+        </Message>
+		
+        <Message id="0xD0047" length="6" name="_VG11_DC_Calibration_Scale_Update" format="extended">
+            <Notes>Update of the calibration table for scales.</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+            <Multiplex name="Calibration_Index" offset="16" length="16">
+                <!--
+                    Index of the calibration value in the calibration table.
+                -->
+                <MuxGroup count="0">
+                    <Signal name="Current_Out" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="13"/>
+                        </Consumer>
+                        <Value type="signed" slope="1.52587890625e-05" unit="scale = 1.0 + value"/>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="Current_Transformer" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="13"/>
+                        </Consumer>
+                        <Value type="signed" slope="1.52587890625e-05" unit="scale = 1.0 + value"/>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="Voltage_Out" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="13"/>
+                        </Consumer>
+                        <Value type="signed" slope="1.52587890625e-05" unit="scale = 1.0 + value"/>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="Voltage_DC_Bus" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="13"/>
+                        </Consumer>
+                        <Value type="signed" slope="1.52587890625e-05" unit="scale = 1.0 + value"/>
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+            <Signal name="CRC" offset="32" length="16" endianess="little">
+                <Notes>Checksum of bytes 0 to 3, CRC-CCITT, corresponding to qChecksum (www.qt.io)</Notes>
+                <Consumer>
+                    <NodeRef id="13"/>
+                </Consumer>
+                <Value type="unsigned" unit="-"/>
+            </Signal>
+        </Message>
+
+        <Message id="0xC8051" length="6" name="_VG11_AC_Calibration_Adc_Scale" interval='1000' format="extended">
+            <Notes>
+                Adc scale (resolution) value of readouts.
+            </Notes>
+            <Producer>
+                <NodeRef id="12"/>
+            </Producer>
+            <Multiplex name="Adc_Index" offset="32" length="16">
+                <!--
+                    Index of the calibration value in the calibration table.
+                -->
+                <MuxGroup count="0">
+                    <Signal name="Current_Mains_A" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="1 / adc_bins" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="Current_Mains_B" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="1 / adc_bins" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="Current_Transformer" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="1 / adc_bins" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="Voltage_Mains" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="1 / adc_bins" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="4">
+                    <Signal name="Voltage_Precharge" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="1 / adc_bins" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="5">
+                    <Signal name="Voltage_DC_Bus_pos" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="1 / adc_bins" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="6">
+                    <Signal name="Voltage_DC_Bus_neg" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="1 / adc_bins" />
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+        </Message>
+		
+        <Message id="0xD8051" length="6" name="_VG11_DC_Calibration_Adc_Scale" interval='1000' format="extended">
+            <Notes>
+                Adc scale (resolution) value of readouts.
+            </Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+            <Multiplex name="Adc_Index" offset="32" length="16">
+                <!--
+                    Index of the calibration value in the calibration table.
+                -->
+                <MuxGroup count="0">
+                    <Signal name="Current_Out" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="1 / adc_bins" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="Current_Transformer" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="1 / adc_bins" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="Voltage_Out" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="1 / adc_bins" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="Voltage_DC_Bus" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="1 / adc_bins" />
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+        </Message>
+
+        <Message id="0xC8052" length="6" name="_VG11_AC_Calibration_Adc_Fs" interval='1000' format="extended">
+            <Notes>
+                Adc fullscale value of readouts.
+            </Notes>
+            <Producer>
+                <NodeRef id="12"/>
+            </Producer>
+            <Multiplex name="Adc_Index" offset="32" length="16">
+                <!--
+                    Index of the calibration value in the calibration table.
+                -->
+                <MuxGroup count="0">
+                    <Signal name="Current_Mains_A" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="Fullscale" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="Current_Mains_B" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="Fullscale" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="Current_Transformer" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="Fullscale" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="Voltage_Mains" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="Fullscale" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="4">
+                    <Signal name="Voltage_Precharge" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="Fullscale" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="5">
+                    <Signal name="Voltage_DC_Bus_pos" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="Fullscale" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="6">
+                    <Signal name="Voltage_DC_Bus_neg" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="Fullscale" />
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+        </Message>
+
+        <Message id="0xD8052" length="6" name="_VG11_DC_Calibration_Adc_Fs" interval='1000' format="extended">
+            <Notes>
+                Adc fullscale value of readouts.
+            </Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+            <Multiplex name="Adc_Index" offset="32" length="16">
+                <!--
+                    Index of the calibration value in the calibration table.
+                -->
+                <MuxGroup count="0">
+                    <Signal name="Current_Out" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="Fullscale" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="Current_Transformer" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="Fullscale" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="Voltage_Out" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="Fullscale" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="Voltage_DC_Bus" offset="0" length="32" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="single" unit="Fullscale" />
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+        </Message>
+		
+		
+        <Message id="0xC8053" length="4" name="_VG11_AC_Calibration_Adc_Offset" interval='1000' format="extended">
+            <Notes>
+                Readout of ADC calibration data (offset) from EEPROM.
+            </Notes>
+            <Producer>
+                <NodeRef id="12"/>
+            </Producer>
+            <Multiplex name="Adc_Index" offset="16" length="16">
+                <!--
+                    Index of the calibration value in the calibration table.
+                -->
+                <MuxGroup count="0">
+                    <Signal name="Current_Mains_A" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="signed" unit="-" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="Current_Mains_B" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="signed" unit="-" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="Current_Transformer" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="signed" unit="-" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="Voltage_Mains" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="signed" unit="-" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="4">
+                    <Signal name="Voltage_Precharge" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="signed" unit="-" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="5">
+                    <Signal name="Voltage_DC_Bus_pos" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="signed" unit="-" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="6">
+                    <Signal name="Voltage_DC_Bus_neg" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="signed" unit="-" />
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+        </Message>
+		
+        <Message id="0xD8053" length="4" name="_VG11_DC_Calibration_Adc_Offset" interval='1000' format="extended">
+            <Notes>
+                Readout of ADC calibration data (offset) from EEPROM.
+            </Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+            <Multiplex name="Adc_Index" offset="16" length="16">
+                <!--
+                    Index of the calibration value in the calibration table.
+                -->
+                <MuxGroup count="0">
+                    <Signal name="Current_Out" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="signed" unit="-" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="Current_Transformer" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="signed" unit="-" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="Voltage_Out" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="signed" unit="-" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="Voltage_DC_Bus" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="signed" unit="-" />
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+        </Message>
+
+        <Message id="0xC8054" length="4" name="_VG11_AC_Calibration_Adc_Gain" interval='1000' format="extended">
+            <Notes>
+                Readout of ADC calibration data (gain) from EEPROM.
+            </Notes>
+            <Producer>
+                <NodeRef id="12"/>
+            </Producer>
+            <Multiplex name="Adc_Index" offset="16" length="16">
+                <!--
+                    Index of the calibration value in the calibration table.
+                -->
+                <MuxGroup count="0">
+                    <Signal name="Current_Mains_A" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="signed" unit="-" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="Current_Mains_B" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="signed" unit="-" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="Current_Transformer" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="signed" unit="-" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="Voltage_Mains" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="signed" unit="-" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="4">
+                    <Signal name="Voltage_Precharge" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="signed" unit="-" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="5">
+                    <Signal name="Voltage_DC_Bus_pos" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="signed" unit="-" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="6">
+                    <Signal name="Voltage_DC_Bus_neg" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="signed" unit="-" />
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+        </Message>
+
+        <Message id="0xD8054" length="4" name="_VG11_DC_Calibration_Adc_Gain" interval='1000' format="extended">
+            <Notes>
+                Readout of ADC calibration data (gain) from EEPROM.
+            </Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+            <Multiplex name="Adc_Index" offset="16" length="16">
+                <!--
+                    Index of the calibration value in the calibration table.
+                -->
+                <MuxGroup count="0">
+                    <Signal name="Current_Out" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="signed" unit="-" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="Current_Transformer" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="signed" unit="-" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="Voltage_Out" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="signed" unit="-" />
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="Voltage_DC_Bus" offset="0" length="16" endianess="little">
+                        <Consumer>
+                            <NodeRef id="0"/>
+                        </Consumer>
+                        <Value type="signed" unit="-" />
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+        </Message>
+		
+    </Bus>
+</NetworkDefinition>

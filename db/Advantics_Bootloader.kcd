@@ -1,0 +1,425 @@
+<?xml version="1.0" ?>
+<NetworkDefinition xmlns="http://kayak.2codeornot2code.org/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="KCD_Definition.xsd">
+    <Document name="Advantics_Bootloader" version="1" author="[...]" company="Advantics" date="2019-11-19"/>
+
+    <Node id="0" name="User"/>
+    <Node id="5" name="Bootloader"/>
+
+    <Bus name="Bootloader" baudrate="500000">
+        <Message id="0xAA8000" length="8" name="Bootloader_Identification" interval="1000" format="extended">
+            <Notes>Identification of the device</Notes>
+            <Producer>
+                <NodeRef id="5"/>
+            </Producer>
+
+            <Signal name="Device_type" offset="0" length="8">
+                <Notes>
+                    The device identification field, uniquely identifies the sender in the network
+                </Notes>
+            </Signal>
+            <Signal name="HW_revision" offset="8" length="8">
+                <Notes>The hardware revision number</Notes>
+            </Signal>
+            <Signal name="HW_variant" offset="16" length="8">
+                <Notes>The DSP firmware revision number</Notes>
+            </Signal>
+            <Signal name="Stack_position" offset="24" length="8">
+                <Notes>Position of the module within the stack</Notes>
+            </Signal>
+            <Signal name="SN_number" offset="32" length="32">
+                <Notes>Unique module serial number</Notes>
+            </Signal>
+        </Message>
+
+        <Message id="0xAA8001" length="8" name="Bootloader_FwInfo" interval="1000" format="extended">
+            <Notes>Git revision of the DSP firmware</Notes>
+            <Producer>
+                <NodeRef id="5"/>
+            </Producer>
+
+            <Multiplex name="FW_info_mux" offset="56" length="8">
+                <MuxGroup count="0">
+                    <Signal name="FW_revision_0" offset="0" length="8">
+                        <Notes>Character 0</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_1" offset="8" length="8">
+                        <Notes>Character 1</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_2" offset="16" length="8">
+                        <Notes>Character 2</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_3" offset="24" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_4" offset="32" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_5" offset="40" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_6" offset="48" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="FW_revision_7" offset="0" length="8">
+                        <Notes>Character 7</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_8" offset="8" length="8">
+                        <Notes>Character 8</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_9" offset="16" length="8">
+                        <Notes>Character 9</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_10" offset="24" length="8">
+                        <Notes>Character 10</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_11" offset="32" length="8">
+                        <Notes>Character 11</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_12" offset="40" length="8">
+                        <Notes>Character 12</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_13" offset="48" length="8">
+                        <Notes>Character 13</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="FW_datecode_0" offset="0" length="8">
+                        <Notes>Character 0</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_1" offset="8" length="8">
+                        <Notes>Character 1</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_2" offset="16" length="8">
+                        <Notes>Character 2</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_3" offset="24" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_4" offset="32" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_5" offset="40" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_6" offset="48" length="8">
+                        <Notes>Character 3</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="FW_datecode_7" offset="0" length="8">
+                        <Notes>Character 7</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_8" offset="8" length="8">
+                        <Notes>Character 8</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_9" offset="16" length="8">
+                        <Notes>Character 9</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_10" offset="24" length="8">
+                        <Notes>Character 10</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_11" offset="32" length="8">
+                        <Notes>Character 11</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_12" offset="40" length="8">
+                        <Notes>Character 12</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_13" offset="48" length="8">
+                        <Notes>Character 13</Notes>
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+        </Message>
+
+        <Message id="0xAA8002" length="8" name="Bootloader_Debug" interval="1000" format="extended">
+            <Notes>Values for debugging of HW/SW problems</Notes>
+            <Producer>
+                <NodeRef id="5"/>
+            </Producer>
+            <Signal name="Status_Error_Code" offset="0" length="16">
+                <Notes>Main status / error code as defined in errno/errno.h</Notes>
+            </Signal>
+            <Signal name="Data_1" offset="16" length="16">
+                <Notes>Additional information for the error/status</Notes>
+            </Signal>
+            <Signal name="Data_2" offset="32" length="16">
+                <Notes>Additional information for the error/status</Notes>
+            </Signal>
+            <Signal name="Data_3" offset="48" length="16">
+                <Notes>Additional information for the error/status</Notes>
+            </Signal>
+        </Message>
+
+        <Message id="0xAA80A5" length="5" name="Bootloader_Info" interval="5" format="extended">
+            <Producer>
+                <NodeRef id="5"/>
+            </Producer>
+            <Signal name="Status" offset="0" length="8">
+                <LabelSet>
+                    <Label name="Bootloader_Idle" value="0"/>
+                    <Label name="Bootloader_Prog" value="1"/>
+                    <Label name="Bootloader_Get_Len" value="2"/>
+                    <Label name="Bootloader_Flash" value="3"/>
+                    <Label name="Bootloader_Erase" value="4"/>
+                    <Label name="Bootloader_Flash_Error" value="5"/>
+                    <Label name="Bootloader_Erase_Error" value="6"/>
+                    <Label name="Bootloader_Download" value="7"/>
+                    <Label name="Bootloader_Download_Start" value="8"/>
+                    <Label name="Bootloader_Flash_End" value="9"/>
+                    <Label name="Bootloader_Prog_Erased" value="10"/>
+                    <Label name="Bootloader_Write_Module" value="11"/>
+                    <Label name="Bootloader_Module_Written" value="12"/>
+                    <Label name="Bootloader_Module_Write_Error" value="13"/>
+                    <Label name="Bootloader_Make_Virgin_Done" value="14"/>
+                    <Label name="Bootloader_Make_Virgin_Error" value="15"/>
+                </LabelSet>
+            </Signal>
+            <Signal name="Error" offset="8" length="16"></Signal>
+            <Signal name="Seq_num" offset="24" length="16"></Signal>
+        </Message>
+
+        <Message id="0xAA00A5" length="8" name="Bootloader_Command" format="extended">
+            <Notes>Single message is used for all Bootloader commands</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+            <Multiplex name="Bootloader_command_id" offset="0" length="8">
+                <MuxGroup count="85">
+                    <!-- 0x55 FLASH REQUEST -->
+                    <Signal name="Flash_address" offset="8" length="32">
+                        <Notes>
+                            Start address of sector to FLASH.
+                        </Notes>
+                        <Consumer>
+                            <NodeRef id="5"/>
+                        </Consumer>
+                    </Signal>
+                    <Signal name="Flash_Request" offset="40" length="1">
+                        <Notes>
+                            This is not required by bootloader to execute,
+                            put here to validate KCD.
+                            (I.e. value is _DON'T CARE_)
+                        </Notes>
+                        <Consumer>
+                            <NodeRef id="5"/>
+                        </Consumer>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="165">
+                    <!-- 0xa5 STOP BOOT -->
+                    <Signal name="Stop_Boot" offset="8" length="1">
+                        <Notes>
+                            This is not required by bootloader to execute,
+                            put here to validate KCD.
+                            (I.e. value is _DON'T CARE_)
+                        </Notes>
+                        <Consumer>
+                            <NodeRef id="5"/>
+                        </Consumer>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="170">
+                    <!-- 0xaa CLEAR ERRORS -->
+                    <Signal name="Clear_Errors" offset="8" length="1">
+                        <Notes>
+                            This is not required by bootloader to execute,
+                            put here to validate KCD.
+                            (I.e. value is _DON'T CARE_)
+                        </Notes>
+                        <Consumer>
+                            <NodeRef id="5"/>
+                        </Consumer>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="90">
+                    <!-- 0x5a RESUME NORMAL BOOT -->
+                    <Signal name="Resume_Boot" offset="8" length="1">
+                        <Notes>
+                            This is not required by bootloader to execute,
+                            put here to validate KCD.
+                            (I.e. value is _DON'T CARE_)
+                        </Notes>
+                        <Consumer>
+                            <NodeRef id="5"/>
+                        </Consumer>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="17">
+                    <!-- 0x11 FLASH ERASE -->
+                    <Signal name="Flash_sector" offset="8" length="32">
+                        <Notes>
+                            Start address of sector to ERASE.
+                        </Notes>
+                        <Consumer>
+                            <NodeRef id="5"/>
+                        </Consumer>
+                    </Signal>
+                    <Signal name="Erase_Sector" offset="40" length="1">
+                        <Notes>
+                            This is not required by bootloader to execute,
+                            put here to validate KCD.
+                            (I.e. value is _DON'T CARE_)
+                        </Notes>
+                        <Consumer>
+                            <NodeRef id="5"/>
+                        </Consumer>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="18">
+                    <!-- 0x12 FLASH LENGTH -->
+                    <Signal name="Flash_len" offset="8" length="32">
+                        <Notes>
+                            Length of the data to flash.
+                        </Notes>
+                        <Consumer>
+                            <NodeRef id="5"/>
+                        </Consumer>
+                    </Signal>
+                    <Signal name="Set_Flash_Length" offset="40" length="1">
+                        <Notes>
+                            This is not required by bootloader to execute,
+                            put here to validate KCD.
+                            (I.e. value is _DON'T CARE_)
+                        </Notes>
+                        <Consumer>
+                            <NodeRef id="5"/>
+                        </Consumer>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="19">
+                    <!-- 0x13 INIT MODULE -->
+                    <Signal name="Device_type" offset="8" length="8">
+                        <Notes>The hardware id</Notes>
+                        <Consumer>
+                            <NodeRef id="5"/>
+                        </Consumer>
+                    </Signal>
+                    <Signal name="HW_variant" offset="16" length="8">
+                        <Notes>The hardware variant number</Notes>
+                        <Consumer>
+                            <NodeRef id="5"/>
+                        </Consumer>
+                    </Signal>
+                    <Signal name="HW_revision" offset="24" length="8">
+                        <Notes>The hardware revision number</Notes>
+                        <Consumer>
+                            <NodeRef id="5"/>
+                        </Consumer>
+                    </Signal>
+                    <Signal name="Stack_position" offset="32" length="8">
+                        <Notes>Position of the module within the stack</Notes>
+                        <Consumer>
+                            <NodeRef id="5"/>
+                        </Consumer>
+                    </Signal>
+                    <Signal name="Stack_size" offset="40" length="16">
+                        <Notes>Stack module count</Notes>
+                        <Consumer>
+                            <NodeRef id="5"/>
+                        </Consumer>
+                    </Signal>
+                    <Signal name="Init_Module" offset="56" length="1">
+                        <Notes>
+                            This is not required by bootloader to execute,
+                            put here to validate KCD.
+                            (I.e. value is _DON'T CARE_)
+                        </Notes>
+                        <Consumer>
+                            <NodeRef id="5"/>
+                        </Consumer>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="20">
+                    <!-- 0x14 MAKE VIRGIN -->
+                    <Signal name="Make_Virgin" offset="8" length="1">
+                        <Notes>
+                            This is not required by bootloader to execute,
+                            put here to validate KCD.
+                            (I.e. value is _DON'T CARE_)
+                        </Notes>
+                        <Consumer>
+                            <NodeRef id="5"/>
+                        </Consumer>
+                    </Signal>
+                </MuxGroup>
+				<MuxGroup count="21">
+                    <!-- 0x15 PROGRAM EEPROM SERIAL NUMBER -->
+					<Signal name="Serial_Number" offset="8" length="32">
+                        <Notes>
+                            This is the serial number to be programmed into the EEPROM. This
+							will only work in those units whose EEPROM does not come with a 
+							preprogrammed serial number.
+                        </Notes>
+                        <Consumer>
+                            <NodeRef id="5"/>
+                        </Consumer>
+                    </Signal>
+                    <Signal name="Program_SN" offset="40" length="1">
+                        <Notes>
+                            This is not required by bootloader to execute,
+                            put here to validate KCD.
+                            (I.e. value is _DON'T CARE_)
+                        </Notes>
+                        <Consumer>
+                            <NodeRef id="5"/>
+                        </Consumer>
+                    </Signal>
+                </MuxGroup>
+                <LabelSet>
+                    <!-- These reflect MuxGroups counts -->
+                    <Label name="Flash_Request" value="85"/>
+                    <Label name="Stop_Boot" value="165"/>
+                    <Label name="Clear_Errors" value="170"/>
+                    <Label name="Resume_Boot" value="90"/>
+                    <Label name="Flash_Erase" value="17"/>
+                    <Label name="Flash_Length" value="18"/>
+                    <Label name="Init_Module" value="19"/>
+                    <Label name="Make_Virgin" value="20"/>
+					<Label name="Program_SN" value="21"/>
+                </LabelSet>
+            </Multiplex>
+        </Message>
+
+        <Message id="0xAA00A6" length="8" name="Bootloader_Download" format="extended">
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+            <Signal name="Seq_num" length="16" offset="48">
+                <Consumer>
+                    <NodeRef id="5"/>
+                </Consumer>
+            </Signal>
+            <Signal name="Data_0" length="16" offset="0">
+                <Consumer>
+                    <NodeRef id="5"/>
+                </Consumer>
+            </Signal>
+            <Signal name="Data_1" length="16" offset="16">
+                <Consumer>
+                    <NodeRef id="5"/>
+                </Consumer>
+            </Signal>
+            <Signal name="Data_2" length="16" offset="32">
+                <Consumer>
+                    <NodeRef id="5"/>
+                </Consumer>
+            </Signal>
+        </Message>
+
+        <Message id="0xAA0050" length="1" name="Bootloader_Fault_Control" format="extended">
+            <Notes>Fault Control: actions to clear faults and reset the system</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+
+            <Signal name="Reset_Processor" offset="1" length="1" endianess="little">
+                <Notes>Reset the filter DSP</Notes>
+                <Consumer>
+                    <NodeRef id="5"/>
+                </Consumer>
+            </Signal>
+        </Message>
+    </Bus>
+</NetworkDefinition>

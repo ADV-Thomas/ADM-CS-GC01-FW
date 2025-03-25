@@ -1,0 +1,344 @@
+<?xml version="1.0" ?>
+<NetworkDefinition xmlns="http://kayak.2codeornot2code.org/1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="KCD_Definition.xsd">
+    <Document name="Advantics VCU_Testbench" version="1" author="[...]" company="Advantics" date="2020-02-11"/>
+    <!-- This CAN database is used to communicate with a VCU that has been re-purposed
+          as a CAN-to-IO interface for test-bench applications. For this application,
+          the VCU needs to be loaded with specific firmware.
+          This database has been forked from the original VCU CAN-database             -->
+    <!-- use :
+         cantools generate_c_source Advantics_VCU_Testbench.kcd
+         to generate the C-files to include in the firmware                            -->
+    <!-- use :
+         cantools dump Advantics_VCU_Testbench.kcd
+         for a human readable version of the database                                  -->
+
+    <Node id="0" name="User"/>
+    <Node id="13" name="VCU_Testbench"/>
+
+    <Bus name="VCU_Testbench" baudrate="500000">
+
+        <!-- general section with VCU system information -->
+
+        <Message id="0xC8000" length="8" name="VCU_Identification" interval="1000" format="extended">
+            <Notes>Identification of the device</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+            <Signal name="Device_type" offset="0" length="8">
+                <Notes>
+                    The device identification field, uniquely identifies the sender in the network.
+                </Notes>
+                <LabelSet>
+                    <Label name="VCU_Testbench" value="13" />
+                </LabelSet>
+            </Signal>
+            <Signal name="HW_revision" offset="8" length="8">
+                  <Notes>The hardware revision number</Notes>
+            </Signal>
+            <Signal name="HW_variant" offset="16" length="8">
+                <Notes>The DSP firmware revision number</Notes>
+            </Signal>
+            <Signal name="Stack_position" offset="24" length="8">
+                <Notes>Position of the module within the stack</Notes>
+            </Signal>
+            <Signal name="SN_number" offset="32" length="32">
+                <Notes>Unique module serial number</Notes>
+            </Signal>
+        </Message>
+
+        <Message id="0xC8001" length="8" name="VCU_FwInfo" interval="1000" format="extended">
+            <Notes>Git revision of the DSP firmware</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+            <Multiplex name="FW_info_mux" offset="56" length="8">
+                <MuxGroup count="0">
+                    <Signal name="FW_revision_0" offset="0" length="8"><Notes>Character 0</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_1" offset="8" length="8"><Notes>Character 1</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_2" offset="16" length="8"><Notes>Character 2</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_3" offset="24" length="8"><Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_4" offset="32" length="8"><Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_5" offset="40" length="8"><Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_6" offset="48" length="8"><Notes>Character 3</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="1">
+                    <Signal name="FW_revision_7" offset="0" length="8"><Notes>Character 7</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_8" offset="8" length="8"><Notes>Character 8</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_9" offset="16" length="8"><Notes>Character 9</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_10" offset="24" length="8"><Notes>Character 10</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_11" offset="32" length="8"><Notes>Character 11</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_12" offset="40" length="8"><Notes>Character 12</Notes>
+                    </Signal>
+                    <Signal name="FW_revision_13" offset="48" length="8"><Notes>Character 13</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="2">
+                    <Signal name="FW_datecode_0" offset="0" length="8"><Notes>Character 0</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_1" offset="8" length="8"><Notes>Character 1</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_2" offset="16" length="8"><Notes>Character 2</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_3" offset="24" length="8"><Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_4" offset="32" length="8"><Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_5" offset="40" length="8"><Notes>Character 3</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_6" offset="48" length="8"><Notes>Character 3</Notes>
+                    </Signal>
+                </MuxGroup>
+                <MuxGroup count="3">
+                    <Signal name="FW_datecode_7" offset="0" length="8"><Notes>Character 7</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_8" offset="8" length="8"><Notes>Character 8</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_9" offset="16" length="8"><Notes>Character 9</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_10" offset="24" length="8"><Notes>Character 10</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_11" offset="32" length="8"><Notes>Character 11</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_12" offset="40" length="8"><Notes>Character 12</Notes>
+                    </Signal>
+                    <Signal name="FW_datecode_13" offset="48" length="8"><Notes>Character 13</Notes>
+                    </Signal>
+                </MuxGroup>
+            </Multiplex>
+        </Message>
+
+        <Message id="0xC8002" length="8" name="VCU_Debug" interval="1000" format="extended">
+            <Notes>Values for debugging of HW/SW problems</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+            <Signal name="Status_Error_Code" offset="0" length="16">
+                <Notes>Main status / error code as defined in errno/errno.h</Notes>
+            </Signal>
+            <Signal name="Data_1" offset="16" length="16">
+                <Notes>Additional information for the error/status</Notes>
+            </Signal>
+            <Signal name="Data_2" offset="32" length="16">
+                <Notes>Additional information for the error/status</Notes>
+            </Signal>
+            <Signal name="Data_3" offset="48" length="16">
+                <Notes>Additional information for the error/status</Notes>
+            </Signal>
+        </Message>
+
+        <!-- IO section 1 : high power digital outputs
+               - pin 1J2 : DOA1 -> OUT1 (high power)
+               - pin 1G2 : DOA3 -> OUT2 (high power)  -->
+
+          <!-- high power digital outputs - CONTROLS  -->
+         <Message id="0xC0001" length="1" name="VCU_highpower_OUTPUT1_enable" interval="500" format="extended">
+            <Notes>Testbench VCU high power output 1 enable (high side driver)</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+            <Signal name="high_power_output1_enable" offset="0" length="1" endianess="little"><Notes>Send the request to enable high power output 1</Notes></Signal>
+        </Message>
+
+         <Message id="0xC0002" length="1" name="VCU_highpower_OUTPUT1_disable" interval="500" format="extended">
+            <Notes>Testbench VCU high power output 1 disable (high side driver)</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+            <Signal name="high_power_output1_disable" offset="0" length="1" endianess="little"><Notes>Send the request to disable high power output 1</Notes></Signal>
+        </Message>
+
+         <Message id="0xC0003" length="1" name="VCU_highpower_OUTPUT2_enable" interval="500" format="extended">
+            <Notes>Testbench VCU high power output 2 enable (high side driver)</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+            <Signal name="high_power_output2_enable" offset="0" length="1" endianess="little"><Notes>Send the request to enable high power output 2</Notes></Signal>
+        </Message>
+
+         <Message id="0xC0004" length="1" name="VCU_highpower_OUTPUT2_disable" interval="500" format="extended">
+            <Notes>Testbench VCU high power output 2 disable (high side driver)</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+            <Signal name="high_power_output2_disable" offset="0" length="1" endianess="little"><Notes>Send the request to disable high power output 2</Notes></Signal>
+        </Message>
+
+          <!-- high power digital outputs - STATI -->
+        <Message id="0xC8003" length="8" name="VCU_highpower_OUTPUTS_Stati" interval="500" format="extended">
+            <Notes>Testbench VCU high power outputs stati</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+            <Signal name="high_power_output1_status" offset="0" length="2" endianess="little">
+                <Notes>Status of high power output 1</Notes>
+                <LabelSet>
+					<Label name="open" value="0" type="value"/>    <!-- realy contact open -->
+					<Label name="closed" value="1"/>               <!-- realy contact closed -->
+					<Label name="fault" value="2"/>                <!-- discrepancy between output status and relay feedback contact -->
+				</LabelSet>
+            </Signal>
+            <Signal name="high_power_output2_status" offset="2" length="2" endianess="little">
+                <Notes>Status of high power output 2</Notes>
+                <LabelSet>
+					<Label name="open" value="0" type="value"/>    <!-- realy contact open -->
+					<Label name="closed" value="1"/>               <!-- realy contact closed -->
+					<Label name="fault" value="2"/>                <!-- discrepancy between output status and relay feedback contact -->
+				</LabelSet>
+            </Signal>
+        </Message>
+
+        <!-- IO section 2 : low power digital outputs
+               - pin 1H2 : DOA2 -> OUT1 (low power)
+               - pin 2H2 : DOB2 -> OUT2 (low power)
+               - pin 2G2 : DOB3 -> OUT3 (low power)
+               - pin 2F2 : DOB4 -> OUT4 (low power)  -->
+          <!-- low power digital outputs - CONTROLS  -->
+         <Message id="0xC0005" length="1" name="VCU_lowpower_OUTPUT1_enable" interval="500" format="extended">
+            <Notes>Testbench VCU low power output 1 enable</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+            <Signal name="low_power_output1_enable" offset="0" length="1" endianess="little"><Notes>Send the request to enable low power output 1</Notes></Signal>
+        </Message>
+
+         <Message id="0xC0006" length="1" name="VCU_lowpower_OUTPUT1_disable" interval="500" format="extended">
+            <Notes>Testbench VCU low power output 1 disable</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+            <Signal name="low_power_output1_disable" offset="0" length="1" endianess="little"><Notes>Send the request to disable low power output 1</Notes></Signal>
+        </Message>
+
+         <Message id="0xC0007" length="1" name="VCU_lowpower_OUTPUT2_enable" interval="500" format="extended">
+            <Notes>Testbench VCU low power output 2 enable</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+            <Signal name="low_power_output2_enable" offset="0" length="1" endianess="little"><Notes>Send the request to enable low power output 2</Notes></Signal>
+        </Message>
+
+         <Message id="0xC0008" length="1" name="VCU_lowpower_OUTPUT2_disable" interval="500" format="extended">
+            <Notes>Testbench VCU low power output 2 disable</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+            <Signal name="low_power_output2_disable" offset="0" length="1" endianess="little"><Notes>Send the request to disable low power output 2</Notes></Signal>
+        </Message>
+
+         <Message id="0xC0009" length="1" name="VCU_lowpower_OUTPUT3_enable" interval="500" format="extended">
+            <Notes>Testbench VCU low power output 3 enable</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+            <Signal name="low_power_output3_enable" offset="0" length="1" endianess="little"><Notes>Send the request to enable low power output 3</Notes></Signal>
+        </Message>
+
+         <Message id="0xC0010" length="1" name="VCU_lowpower_OUTPUT3_disable" interval="500" format="extended">
+            <Notes>Testbench VCU low power output 3 disable</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+            <Signal name="low_power_output3_disable" offset="0" length="1" endianess="little"><Notes>Send the request to disable low power output 3</Notes></Signal>
+        </Message>
+
+         <Message id="0xC0011" length="1" name="VCU_lowpower_OUTPUT4_enable" interval="500" format="extended">
+            <Notes>Testbench VCU low power output 4 enable</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+            <Signal name="low_power_output4_enable" offset="0" length="1" endianess="little"><Notes>Send the request to enable low power output 4</Notes></Signal>
+        </Message>
+
+         <Message id="0xC0012" length="1" name="VCU_lowpower_OUTPUT4_disable" interval="500" format="extended">
+            <Notes>Testbench VCU low power output 4 disable</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+            <Signal name="low_power_output4_disable" offset="0" length="1" endianess="little"><Notes>Send the request to disable low power output 4</Notes></Signal>
+        </Message>
+
+          <!-- low power digital outputs - STATI -->
+        <Message id="0xC8004" length="8" name="VCU_lowpower_OUTPUTS_Stati" interval="500" format="extended">
+            <Notes>Testbench VCU low power outputs stati</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+            <Signal name="low_power_output1_status" offset="0" length="3" endianess="little">
+                <Notes>Status of low power output 1</Notes>
+                <LabelSet>
+					<Label name="open" value="0" type="value"/>    <!-- realy contact open -->
+					<Label name="closed" value="1"/>               <!-- realy contact closed -->
+					<Label name="fault" value="2"/>                <!-- discrepancy between output status and relay feedback contact -->
+				</LabelSet>
+            </Signal>
+            <Signal name="low_power_output2_status" offset="3" length="3" endianess="little">
+                <Notes>Status of low power output 2</Notes>
+                <LabelSet>
+					<Label name="open" value="0" type="value"/>    <!-- realy contact open -->
+					<Label name="closed" value="1"/>               <!-- realy contact closed -->
+					<Label name="fault" value="2"/>                <!-- discrepancy between output status and relay feedback contact -->
+				</LabelSet>
+            </Signal>
+            <Signal name="low_power_output3_status" offset="6" length="3" endianess="little">
+                <Notes>Status of low power output 3</Notes>
+                <LabelSet>
+					<Label name="open" value="0" type="value"/>    <!-- realy contact open -->
+					<Label name="closed" value="1"/>               <!-- realy contact closed -->
+					<Label name="fault" value="2"/>                <!-- discrepancy between output status and relay feedback contact -->
+				</LabelSet>
+            </Signal>
+            <Signal name="low_power_output4_status" offset="9" length="3" endianess="little">
+                <Notes>Status of low power output 4</Notes>
+                <LabelSet>
+					<Label name="open" value="0" type="value"/>    <!-- realy contact open -->
+					<Label name="closed" value="1"/>               <!-- realy contact closed -->
+					<Label name="fault" value="2"/>                <!-- discrepancy between output status and relay feedback contact -->
+				</LabelSet>
+            </Signal>
+        </Message>
+
+        <!-- IO section 3 : analog inputs
+               - pin 3F2 : DIA1
+               - pin 3G2 : DIA2
+               - pin 3H2 : DIA3
+               - pin 3J2 : DIA4              -->
+        <Message id="0xC8005" length="8" name="VCU_analog_INPUTS_values" interval="500" format="extended">
+            <Notes>Values measured on analog inputs 1-4</Notes>
+            <Producer>
+                <NodeRef id="13"/>
+            </Producer>
+            <Signal name="analog_input1" offset="0" length="16" endianess="little">
+                <Notes>Value measured on analog input 1</Notes>
+                <Value type="unsigned" slope="0.1" unit="V" />
+            </Signal>
+            <Signal name="analog_input2" offset="16" length="16" endianess="little">
+                <Notes>Value measured on analog input 2</Notes>
+                <Value type="unsigned" slope="0.1" unit="V" />
+            </Signal>
+            <Signal name="analog_input3" offset="32" length="16" endianess="little">
+                <Notes>Value measured on analog input 3</Notes>
+                <Value type="unsigned" slope="0.1" unit="V" />
+            </Signal>
+            <Signal name="analog_input4" offset="48" length="16" endianess="little">
+                <Notes>Value measured on analog input 4</Notes>
+                <Value type="unsigned" slope="0.1" unit="V" />
+            </Signal>
+        </Message>
+
+    </Bus>
+
+</NetworkDefinition>

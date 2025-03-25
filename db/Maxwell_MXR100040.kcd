@@ -1,0 +1,564 @@
+<?xml version="1.0" ?>
+<NetworkDefinition xmlns="http://kayak.2codeornot2code.org/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="KCD_Definition.xsd">
+    <Document name="MXR100040" version="1.1" author="[...]" company="Advantics" date="2020-10-31"/>
+
+    <Node id="1" name="Charger"/>
+    <Node id="0" name="Controller"/>
+
+    <Bus name="MXR100040" baudrate="125000">
+		<Message id="0x6080780" length="8" name="CTRL_MXR_pos0_group0" interval="1000" format="extended">
+            <Notes>Request from the Controller towards the charger. Request is also necessary to get any data out.</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+			
+			<Multiplex name="Register" offset="16" length="16" endianess="big">
+				<!-- 0x0001 -->
+                <MuxGroup count="1"> 
+                    <Signal name="Get_Module_Voltage" offset="32" length="32" endianess="big">
+						<Notes>Get_Module_Voltage</Notes>
+						<Value type="single" unit="V"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0002 -->
+				<MuxGroup count="2"> 
+                    <Signal name="Get_Module_Current" offset="32" length="32" endianess="big">
+						<Notes>Get_Module_Current</Notes>
+						<Value type="single" unit="A"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0003 -->
+				<MuxGroup count="3"> 
+                    <Signal name="Get_Current_Limit" offset="32" length="32" endianess="big">
+						<Notes>Get_Current_Limit</Notes>
+						<Value type="single" unit="A"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0004 -->
+				<MuxGroup count="4"> 
+                    <Signal name="Get_DCDC_Temp" offset="32" length="32" endianess="big">
+						<Notes>Get_DCDC_Temp</Notes>
+						<Value type="single" unit="C"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0005 -->
+				<MuxGroup count="5"> 
+                    <Signal name="Get_PFC_Voltage" offset="32" length="32" endianess="big">
+						<Notes>Get_PFC_Voltage</Notes>
+						<Value type="single" unit="V"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0008 -->
+				<MuxGroup count="8"> 
+                    <Signal name="Get_PFC0_Pos_Voltage" offset="32" length="32" endianess="big">
+						<Notes>Get_PFC0_Pos_Voltage</Notes>
+						<Value type="single" unit="V"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x000A -->
+				<MuxGroup count="10"> 
+                    <Signal name="Get_PFC1_Neg_Voltage" offset="32" length="32" endianess="big">
+						<Notes>Get_PFC1_Neg_Voltage</Notes>
+						<Value type="single" unit="V"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x000B -->
+				<MuxGroup count="11"> 
+                    <Signal name="Get_Ambient_Temp" offset="32" length="32" endianess="big">
+						<Notes>Get_Ambient_Temp</Notes>
+						<Value type="single" unit="C"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x000C -->
+				<MuxGroup count="12"> 
+                    <Signal name="Get_AC_Phase_A_Voltage" offset="32" length="32" endianess="big">
+						<Notes>Get_AC_Phase_A_Voltage</Notes>
+						<Value type="single" unit="V"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x000D -->
+				<MuxGroup count="13"> 
+                    <Signal name="Get_AC_Phase_B_Voltage" offset="32" length="32" endianess="big">
+						<Notes>Get_AC_Phase_B_Voltage</Notes>
+						<Value type="single" unit="V"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x000E -->
+				<MuxGroup count="14"> 
+                    <Signal name="Get_AC_Phase_C_Voltage" offset="32" length="32" endianess="big">
+						<Notes>Get_AC_Phase_C_Voltage</Notes>
+						<Value type="single" unit="V"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0010 -->
+				<MuxGroup count="16"> 
+                    <Signal name="Get_PFC_Temp" offset="32" length="32" endianess="big">
+						<Notes>Get_PFC_Temp</Notes>
+						<Value type="single" unit="C"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0011 -->
+				<MuxGroup count="17"> 
+                    <Signal name="Get_Rated_Power" offset="32" length="32" endianess="big">
+						<Notes>Get_Rated_Power</Notes>
+						<Value type="single" unit="W"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0012 -->
+				<MuxGroup count="18"> 
+                    <Signal name="Get_Rated_Current" offset="32" length="32" endianess="big">
+						<Notes>Get_Rated_Current</Notes>
+						<Value type="single" unit="A"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0017 -->
+				<MuxGroup count="23"> 
+                    <Signal name="Set_Altitude" offset="32" length="32" endianess="big">
+						<Notes>Set_Altitude</Notes>
+						<Value type="signed" slope="1" unit="m"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x001B -->
+				<MuxGroup count="27"> 
+                    <Signal name="Set_Output_Current" offset="32" length="32" endianess="big">
+						<Notes>Set_Output_Current</Notes>
+						<Value type="unsigned" slope="0.1" unit="A"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x001E -->
+				<MuxGroup count="30"> 
+                    <Signal name="Set_Group_Number" offset="56" length="3" endianess="big">
+						<Notes>Set_Group_Number</Notes>
+						<Value type="unsigned"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x001F -->
+				<MuxGroup count="31"> 
+                    <Signal name="Set_Module_Address" offset="32" length="32" endianess="big">
+						<Notes>Set_Module_Address</Notes>
+						<Value type="unsigned"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0021 -->
+				<MuxGroup count="33"> 
+                    <Signal name="Set_Output_Voltage" offset="32" length="32" endianess="big">
+						<Notes>Set_Output_Voltage</Notes>
+						<Value type="single" unit="V"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0022 -->
+				<MuxGroup count="34"> 
+                    <Signal name="Set_Output_Current_Limit" offset="32" length="32" endianess="big">
+						<Notes>Set_Output_Current_Limit</Notes>
+						<Value type="single" unit="A"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0023 -->
+				<MuxGroup count="35"> 
+                    <Signal name="Set_Output_Voltage_Limit" offset="32" length="32" endianess="big">
+						<Notes>Set_Output_Voltage_Limit</Notes>
+						<Value type="single" unit="V"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0030 -->
+				<MuxGroup count="48"> 
+                    <Signal name="Set_ON_OFF" offset="32" length="32" endianess="big">
+						<Notes>Set_ON_OFF</Notes>
+						<LabelSet>
+							<Label name="ON" value="0" />
+							<!-- 0x1000 -->
+							<Label name="OFF" value="4096" />
+						</LabelSet>
+                    </Signal>
+				</MuxGroup>
+				<!-- 0x0031 -->
+				<MuxGroup count="49"> 
+                    <Signal name="Set_Overvoltage_Reset" offset="32" length="32" endianess="big">
+						<Notes>Set_Overvoltage_Reset</Notes>
+						<LabelSet>
+							<Label name="No_Action" value="0" />
+							<!-- 0x1000 -->
+							<Label name="Reset" value="4096" />
+						</LabelSet>
+                    </Signal>
+				</MuxGroup>
+				<!-- 0x003E -->
+				<MuxGroup count="62"> 
+                    <Signal name="Set_Overvoltage_Protection" offset="32" length="32" endianess="big">
+						<Notes>Set_Overvoltage_Protection</Notes>
+						<LabelSet>
+							<Label name="Allowed" value="0" />
+							<!-- 0x1000 -->
+							<Label name="Disabled" value="4096" />
+						</LabelSet>
+                    </Signal>
+				</MuxGroup>
+				<!-- 0x00040 -->
+				<MuxGroup count="64"> 
+                    <Signal name="Get_Alarm_Status" offset="32" length="32" endianess="big">
+						<Notes>Get_Alarm_Status</Notes>
+						<LabelSet>
+							<Label name="TODO" value="0" />
+						</LabelSet>
+                    </Signal>
+				</MuxGroup>
+				<!-- 0x0043 -->
+				<MuxGroup count="67"> 
+                    <Signal name="Get_Dial_Address" offset="32" length="32" endianess="big">
+						<Notes>Get_Dial_Address</Notes>
+						<Value type="unsigned"/>
+                    </Signal>
+				</MuxGroup>
+				<!-- 0x0044 -->
+				<MuxGroup count="068"> 
+                    <Signal name="Set_Reset_Short_Circuit" offset="32" length="32" endianess="big">
+						<Notes>Set_Reset_Short_Circuit</Notes>
+						<LabelSet>
+							<Label name="No_Action" value="0" />
+							<!-- 0x1000 -->
+							<Label name="Reset" value="4096" />
+						</LabelSet>
+                    </Signal>
+				</MuxGroup>
+				<!-- 0x0048 -->
+				<MuxGroup count="72"> 
+                    <Signal name="Get_Input_Power" offset="32" length="32" endianess="big">
+						<Notes>Get_Input_Power</Notes>
+						<Value type="unsigned" unit="W"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x004A -->
+				<MuxGroup count="74"> 
+                    <Signal name="Get_Altitude" offset="32" length="32" endianess="big">
+						<Notes>Get_Altitude</Notes>
+						<Value type="unsigned" unit="m"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x00054 -->
+				<MuxGroup count="84"> 
+                    <Signal name="Get_SN_Low" offset="32" length="32" endianess="big">
+						<Notes>Get_SN_low</Notes>
+						<Value type="unsigned"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0055 -->
+				<MuxGroup count="85"> 
+                    <Signal name="Get_SN_High" offset="32" length="32" endianess="big">
+						<Notes>Get_SN_low</Notes>
+						<Value type="unsigned"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0056 -->
+				<MuxGroup count="86"> 
+                    <Signal name="Get_DCDC_version" offset="32" length="32" endianess="big">
+						<Notes>Get_DCDC_version</Notes>
+						<Value type="unsigned"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0057 -->
+				<MuxGroup count="87"> 
+                    <Signal name="Get_DCDC_version" offset="32" length="32" endianess="big">
+						<Notes>Get_DCDC_version</Notes>
+						<Value type="unsigned"/>
+                    </Signal>
+				</MuxGroup>	
+			</Multiplex>	
+
+            <Signal name="Function" offset="0" length="8" endianess="big">
+                <Notes>The function - identifying control, set or response. Response only makes sense in MXR->control, not wise versa.</Notes>
+                <LabelSet>
+					<!-- 0x10 -->
+                    <Label name="Request" value="16" />
+					<!-- 0x42 -->
+					<Label name="Returned_Integer" value="66" />
+					<!-- 0x41 -->
+					<Label name="Returned_Float" value="65" />
+					<!-- 0x03 -->
+					<Label name="Set" value="3" />
+                </LabelSet>
+            </Signal>
+            <Signal name="Reserved" offset="8" length="8" endianess="big">
+                <Notes>Not used when sending data</Notes>
+            </Signal>
+				
+        </Message>
+	
+	<Message id="0x60F8000" length="8" name="MXR_CTRL_pos0_group0" format="extended">
+            <Notes>Request from the Controller towards the charger. Request is also necessary to get any data out.</Notes>
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+			
+			<Multiplex name="Register" offset="16" length="16" endianess="big">
+				<!-- 0x0001 -->
+                <MuxGroup count="1"> 
+                    <Signal name="Get_Module_Voltage" offset="32" length="32" endianess="big">
+						<Notes>Get_Module_Voltage</Notes>
+						<Value type="single" unit="V"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0002 -->
+				<MuxGroup count="2"> 
+                    <Signal name="Get_Module_Current" offset="32" length="32" endianess="big">
+						<Notes>Get_Module_Current</Notes>
+						<Value type="single" unit="A"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0003 -->
+				<MuxGroup count="3"> 
+                    <Signal name="Get_Current_Limit" offset="32" length="32" endianess="big">
+						<Notes>Get_Current_Limit</Notes>
+						<Value type="single" unit="A"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0004 -->
+				<MuxGroup count="4"> 
+                    <Signal name="Get_DCDC_Temp" offset="32" length="32" endianess="big">
+						<Notes>Get_DCDC_Temp</Notes>
+						<Value type="single" unit="C"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0005 -->
+				<MuxGroup count="5"> 
+                    <Signal name="Get_PFC_Voltage" offset="32" length="32" endianess="big">
+						<Notes>Get_PFC_Voltage</Notes>
+						<Value type="single" unit="V"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0008 -->
+				<MuxGroup count="8"> 
+                    <Signal name="Get_PFC0_Pos_Voltage" offset="32" length="32" endianess="big">
+						<Notes>Get_PFC0_Pos_Voltage</Notes>
+						<Value type="single" unit="V"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x000A -->
+				<MuxGroup count="10"> 
+                    <Signal name="Get_PFC1_Neg_Voltage" offset="32" length="32" endianess="big">
+						<Notes>Get_PFC1_Neg_Voltage</Notes>
+						<Value type="single" unit="V"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x000B -->
+				<MuxGroup count="11"> 
+                    <Signal name="Get_Ambient_Temp" offset="32" length="32" endianess="big">
+						<Notes>Get_Ambient_Temp</Notes>
+						<Value type="single" unit="C"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x000C -->
+				<MuxGroup count="12"> 
+                    <Signal name="Get_AC_Phase_A_Voltage" offset="32" length="32" endianess="big">
+						<Notes>Get_AC_Phase_A_Voltage</Notes>
+						<Value type="single" unit="V"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x000D -->
+				<MuxGroup count="13"> 
+                    <Signal name="Get_AC_Phase_B_Voltage" offset="32" length="32" endianess="big">
+						<Notes>Get_AC_Phase_B_Voltage</Notes>
+						<Value type="single" unit="V"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x000E -->
+				<MuxGroup count="14"> 
+                    <Signal name="Get_AC_Phase_C_Voltage" offset="32" length="32" endianess="big">
+						<Notes>Get_AC_Phase_C_Voltage</Notes>
+						<Value type="single" unit="V"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0010 -->
+				<MuxGroup count="16"> 
+                    <Signal name="Get_PFC_Temp" offset="32" length="32" endianess="big">
+						<Notes>Get_PFC_Temp</Notes>
+						<Value type="single" unit="C"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0011 -->
+				<MuxGroup count="17"> 
+                    <Signal name="Get_Rated_Power" offset="32" length="32" endianess="big">
+						<Notes>Get_Rated_Power</Notes>
+						<Value type="single" unit="W"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0012 -->
+				<MuxGroup count="18"> 
+                    <Signal name="Get_Rated_Current" offset="32" length="32" endianess="big">
+						<Notes>Get_Rated_Current</Notes>
+						<Value type="single" unit="A"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0017 -->
+				<MuxGroup count="23"> 
+                    <Signal name="Set_Altitude" offset="32" length="32" endianess="big">
+						<Notes>Set_Altitude</Notes>
+						<Value type="signed" slope="1" unit="m"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x001B -->
+				<MuxGroup count="27"> 
+                    <Signal name="Set_Output_Current" offset="32" length="32" endianess="big">
+						<Notes>Set_Output_Current</Notes>
+						<Value type="unsigned" slope="0.1" unit="A"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x001E -->
+				<MuxGroup count="30"> 
+                    <Signal name="Set_Group_Number" offset="56" length="3" endianess="big">
+						<Notes>Set_Group_Number</Notes>
+						<Value type="unsigned"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x001F -->
+				<MuxGroup count="31"> 
+                    <Signal name="Set_Module_Address" offset="32" length="32" endianess="big">
+						<Notes>Set_Module_Address</Notes>
+						<Value type="unsigned"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0021 -->
+				<MuxGroup count="33"> 
+                    <Signal name="Set_Output_Voltage" offset="32" length="32" endianess="big">
+						<Notes>Set_Output_Voltage</Notes>
+						<Value type="single" unit="V"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0022 -->
+				<MuxGroup count="34"> 
+                    <Signal name="Set_Output_Current_Limit" offset="32" length="32" endianess="big">
+						<Notes>Set_Output_Current_Limit</Notes>
+						<Value type="single" unit="A"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0023 -->
+				<MuxGroup count="35"> 
+                    <Signal name="Set_Output_Voltage_Limit" offset="32" length="32" endianess="big">
+						<Notes>Set_Output_Voltage_Limit</Notes>
+						<Value type="single" unit="V"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0030 -->
+				<MuxGroup count="48"> 
+                    <Signal name="Set_ON_OFF" offset="32" length="32" endianess="big">
+						<Notes>Set_ON_OFF</Notes>
+						<LabelSet>
+							<Label name="ON" value="0" />
+							<!-- 0x1000 -->
+							<Label name="OFF" value="4096" />
+						</LabelSet>
+                    </Signal>
+				</MuxGroup>
+				<!-- 0x0031 -->
+				<MuxGroup count="49"> 
+                    <Signal name="Set_Overvoltage_Reset" offset="32" length="32" endianess="big">
+						<Notes>Set_Overvoltage_Reset</Notes>
+						<LabelSet>
+							<Label name="No_Action" value="0" />
+							<!-- 0x1000 -->
+							<Label name="Reset" value="4096" />
+						</LabelSet>
+                    </Signal>
+				</MuxGroup>
+				<!-- 0x003E -->
+				<MuxGroup count="62"> 
+                    <Signal name="Set_Overvoltage_Protection" offset="32" length="32" endianess="big">
+						<Notes>Set_Overvoltage_Protection</Notes>
+						<LabelSet>
+							<Label name="Allowed" value="0" />
+							<!-- 0x1000 -->
+							<Label name="Disabled" value="4096" />
+						</LabelSet>
+                    </Signal>
+				</MuxGroup>
+				<!-- 0x00040 -->
+				<MuxGroup count="64"> 
+                    <Signal name="Get_Alarm_Status" offset="32" length="32" endianess="big">
+						<Notes>Get_Alarm_Status</Notes>
+						<LabelSet>
+							<Label name="TODO" value="0" />
+						</LabelSet>
+                    </Signal>
+				</MuxGroup>
+				<!-- 0x0043 -->
+				<MuxGroup count="67"> 
+                    <Signal name="Get_Dial_Address" offset="32" length="32" endianess="big">
+						<Notes>Get_Dial_Address</Notes>
+						<Value type="unsigned"/>
+                    </Signal>
+				</MuxGroup>
+				<!-- 0x0044 -->
+				<MuxGroup count="068"> 
+                    <Signal name="Set_Reset_Short_Circuit" offset="32" length="32" endianess="big">
+						<Notes>Set_Reset_Short_Circuit</Notes>
+						<LabelSet>
+							<Label name="No_Action" value="0" />
+							<!-- 0x1000 -->
+							<Label name="Reset" value="4096" />
+						</LabelSet>
+                    </Signal>
+				</MuxGroup>
+				<!-- 0x0048 -->
+				<MuxGroup count="72"> 
+                    <Signal name="Get_Input_Power" offset="32" length="32" endianess="big">
+						<Notes>Get_Input_Power</Notes>
+						<Value type="unsigned" unit="W"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x004A -->
+				<MuxGroup count="74"> 
+                    <Signal name="Get_Altitude" offset="32" length="32" endianess="big">
+						<Notes>Get_Altitude</Notes>
+						<Value type="unsigned" unit="m"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x00054 -->
+				<MuxGroup count="84"> 
+                    <Signal name="Get_SN_Low" offset="32" length="32" endianess="big">
+						<Notes>Get_SN_low</Notes>
+						<Value type="unsigned"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0055 -->
+				<MuxGroup count="85"> 
+                    <Signal name="Get_SN_High" offset="32" length="32" endianess="big">
+						<Notes>Get_SN_low</Notes>
+						<Value type="unsigned"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0056 -->
+				<MuxGroup count="86"> 
+                    <Signal name="Get_DCDC_version" offset="32" length="32" endianess="big">
+						<Notes>Get_DCDC_version</Notes>
+						<Value type="unsigned"/>
+                    </Signal>
+				</MuxGroup>	
+				<!-- 0x0057 -->
+				<MuxGroup count="87"> 
+                    <Signal name="Get_DCDC_version" offset="32" length="32" endianess="big">
+						<Notes>Get_DCDC_version</Notes>
+						<Value type="unsigned"/>
+                    </Signal>
+				</MuxGroup>	
+			</Multiplex>	
+
+            <Signal name="Function" offset="0" length="8" endianess="big">
+                <Notes>The function - identifying control, set or response. Response only makes sense in MXR->control, not wise versa.</Notes>
+                <LabelSet>
+					<!-- 0x10 -->
+                    <Label name="Request" value="16" />
+					<!-- 0x42 -->
+					<Label name="Returned_Integer" value="66" />
+					<!-- 0x41 -->
+					<Label name="Returned_Float" value="65" />
+					<!-- 0x03 -->
+					<Label name="Set" value="3" />
+                </LabelSet>
+            </Signal>
+            <Signal name="Reserved" offset="8" length="8" endianess="big">
+                <Notes>Not used when sending data</Notes>
+            </Signal>
+				
+        </Message>
+
+    </Bus>
+</NetworkDefinition>

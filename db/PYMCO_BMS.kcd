@@ -1,0 +1,145 @@
+<?xml version="1.0" ?>
+<NetworkDefinition xmlns="http://kayak.2codeornot2code.org/1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="KCD_Definition.xsd">
+    <Document name="PYMCO_BMS" version="1" author="[...]" company="Advantics" date="2018-09-13"/>
+
+    <Node id="0" name="Controller"/>
+    <Node id="1" name="BMS"/>
+
+    <Bus name="BMS" baudrate="500000">
+        <Message id="0x18FF50E5" length="8" name="Activate" interval="1000" format="extended">
+            <Notes>Must be sent each second to activate BMS charge mode and close charge contactor</Notes>
+
+            <Producer>
+                <NodeRef id="0"/>
+            </Producer>
+        </Message>
+
+        <Message id="0x1806E5F4" length="8" name="Charge_Requests" interval="1000" format="extended">
+            <Notes>Charging requests in voltage and current from the BMS</Notes>
+
+            <Producer>
+                <NodeRef id="1"/>
+            </Producer>
+
+            <Signal name="Voltage_Limit" offset="0" length="16" endianess="big">
+                <Notes>Final target voltage</Notes>
+                <Value type="unsigned" slope="0.1" unit="Volts" min="0" max="1000"/>
+            </Signal>
+
+            <Signal name="Current_Limit" offset="16" length="16" endianess="big">
+                <Notes>Maximum allowable output current</Notes>
+                <Value type="unsigned" slope="0.1" unit="Amps" min="0" max="1000"/>
+            </Signal>
+        </Message>
+
+        <Message id="0x01B10000" length="8" name="Contactors_Feedback" format="extended">
+            <Notes>Read contactors statuses.</Notes>
+
+            <Producer>
+                <NodeRef id="1"/>
+            </Producer>
+
+            <Signal name="Charge_Contactor" offset="8" length="1">
+                <Notes>1 = enabled</Notes>
+                <LabelSet>
+                    <Label name="Disabled" value="0" />
+                    <Label name="Enabled" value="1" />
+                </LabelSet>
+            </Signal>
+
+            <Signal name="Battery_Contactor" offset="10" length="1">
+                <Notes>1 = enabled</Notes>
+                <LabelSet>
+                    <Label name="Disabled" value="0" />
+                    <Label name="Enabled" value="1" />
+                </LabelSet>
+            </Signal>
+        </Message>
+
+        <Message id="0x01B10001" length="8" name="Present_Voltage" format="extended">
+            <Notes>Total voltage of all cells in the battery pack, slope = 0.01</Notes>
+
+            <Producer>
+                <NodeRef id="1"/>
+            </Producer>
+
+            <Signal name="Voltage_LSW" offset="24" length="16" endianess="big">
+                <Notes>Least significant word (uint16) of present voltage</Notes>
+                <Value type="unsigned" />
+            </Signal>
+
+            <Signal name="Voltage_MSW" offset="40" length="16" endianess="big">
+                <Notes>Most significant word (uint16) of present voltage</Notes>
+                <Value type="unsigned" />
+            </Signal>
+        </Message>
+
+        <Message id="0x01B10005" length="8" name="Present_Current_and_SoC" format="extended">
+            <Notes>Present current, and battery state of charge in Ah and %</Notes>
+
+            <Producer>
+                <NodeRef id="1"/>
+            </Producer>
+
+            <Signal name="Present_Current" offset="0" length="16" endianess="big">
+                <Notes>Momentary current value</Notes>
+                <Value type="signed" slope="0.1" unit="Amps" min="0" max="1000"/>
+            </Signal>
+
+            <Signal name="Estimated_Charge" offset="16" length="16" endianess="big">
+                <Notes>Estimated remaining charge in the battery pack</Notes>
+                <Value type="unsigned" slope="0.1" unit="Ah" min="0" max="1000"/>
+            </Signal>
+
+            <Signal name="State_of_Charge" offset="48" length="8">
+                <Notes>Estimated state of charge of the battery pack</Notes>
+                <Value type="unsigned" slope="1" unit="%" min="0" max="100"/>
+            </Signal>
+        </Message>
+
+        <Message id="0x01B10006" length="8" name="Energy" format="extended">
+            <Notes>Battery state of charge in Wh</Notes>
+
+            <Producer>
+                <NodeRef id="1"/>
+            </Producer>
+
+            <Signal name="Estimated_Energy" offset="16" length="16" endianess="big">
+                <Notes>Estimated energy left in battery pack</Notes>
+                <Value type="unsigned" slope="10" unit="Wh" />
+            </Signal>
+        </Message>
+
+        <Message id="0x01B10007" length="8" name="Warnings" format="extended">
+            <Notes>Warnings from BMS</Notes>
+
+            <Producer>
+                <NodeRef id="1"/>
+            </Producer>
+
+            <Signal name="High_Temperature" offset="10" length="1">
+                <Notes>Cell module temperature exceeds warning temperature setting. CHARGE CURRENT LIMIT MUST DECREASE TO 25A</Notes>
+                <LabelSet>
+                    <Label name="Good" value="0" />
+                    <Label name="Warning" value="1" />
+                </LabelSet>
+            </Signal>
+        </Message>
+
+        <Message id="0x500" length="1" name="Custom_Limits">
+            <Notes>Additional dynamic charging limits</Notes>
+
+            <Producer>
+                <NodeRef id="1"/>
+            </Producer>
+
+            <Signal name="Current_Limit" offset="0" length="8">
+                <Notes>Maximum allowable output current</Notes>
+                <Value type="unsigned" slope="1" unit="Amps" min="0" max="255"/>
+            </Signal>
+        </Message>
+
+    </Bus>
+</NetworkDefinition>
